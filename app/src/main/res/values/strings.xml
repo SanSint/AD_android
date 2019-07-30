@@ -25,5 +25,6 @@
         <item>Zone G</item>
         <item>Zone H</item>
     </string-array>
+    <string name="title_activity_successpage">Successpage</string>
 
 </resources>
