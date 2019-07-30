@@ -11,8 +11,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="379dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Stationery Retrival Form"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -20,13 +33,21 @@
                 android:id="@+id/zone_fliter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_marginLeft="250dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="6dp"
+                android:layout_weight="1"
+                android:entries="@array/zonelist"
+                android:prompt="@string/zone"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

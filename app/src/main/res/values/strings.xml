@@ -12,4 +12,18 @@
 
     <string name="login">"Login"</string>
 
+
+    <string name="zone">Fliter By Zone: </string>
+
+    <string-array name="zonelist">
+        <item>Zone A</item>
+        <item>Zone B</item>
+        <item>Zone C</item>
+        <item>Zone D</item>
+        <item>Zone E</item>
+        <item>Zone F</item>
+        <item>Zone G</item>
+        <item>Zone H</item>
+    </string-array>
+
 </resources>
