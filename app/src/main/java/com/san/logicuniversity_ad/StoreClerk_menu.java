@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class StoreClerk_menu_Activity extends AppCompatActivity
+public class StoreClerk_menu extends AppCompatActivity
         implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_clerk_menu_);
+        setContentView(R.layout.activity_store_clerk_menu);
 
         ImageButton btn=findViewById(R.id.retivial_from_btn);
 
@@ -21,7 +21,7 @@ public class StoreClerk_menu_Activity extends AppCompatActivity
     }
     public void onClick(View v)
     {
-        Intent retrieve=new Intent(this,RetrivalFormActivity.class);
+        Intent retrieve=new Intent(this,RetrivalForm.class);
         startActivity(retrieve);
 
     }
