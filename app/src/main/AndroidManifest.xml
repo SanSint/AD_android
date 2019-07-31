@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StockChecking" />
-        <activity android:name=".StockCheckList" />
-        <activity android:name=".Success" />
-        <activity android:name=".ViewDisbursementList" />
-        <activity android:name=".DisbursementList" />
-        <activity android:name=".RetrivalForm" />
+        <activity android:name=".Store_StockChecking" />
+        <activity android:name=".Store_StockCheckList" />
+        <activity android:name=".Store_Success" />
+        <activity android:name=".Store_ViewDisbursementList" />
+        <activity android:name=".Store_DisbursementList" />
+        <activity android:name=".Store_RetrivalForm" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".StoreClerk_menu">
             <intent-filter>

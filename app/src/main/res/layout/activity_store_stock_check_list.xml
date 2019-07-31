@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StockChecking">
+    tools:context=".Store_StockCheckList">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:fontFamily="sans-serif-condensed"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Stock Checking"
+            android:text="Stock Check List"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textSize="20dp"
@@ -29,31 +29,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
 
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
-
-            <Button
-                android:id="@+id/btn_submit_stock_checklist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="12dp"
-                android:text="Submit" />
 
         </LinearLayout>
     </LinearLayout>

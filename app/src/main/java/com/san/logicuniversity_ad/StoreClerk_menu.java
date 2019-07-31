@@ -15,14 +15,44 @@ public class StoreClerk_menu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_menu);
 
-        ImageButton btn=findViewById(R.id.retivial_from_btn);
 
-        btn.setOnClickListener(this);
+        ImageButton dis_btn=findViewById(R.id.dis_list_btn);
+        if(dis_btn!=null)
+            dis_btn.setOnClickListener(this);
+
+        ImageButton retrieve_btn=findViewById(R.id.retivial_form_btn);
+        if(retrieve_btn!= null)
+            retrieve_btn.setOnClickListener(this);
+
+        ImageButton stockcheck_btn=findViewById(R.id.stockcheck_btn);
+        if(stockcheck_btn!=null)
+            stockcheck_btn.setOnClickListener(this);
+
+
     }
     public void onClick(View v)
     {
-        Intent retrieve=new Intent(this,RetrivalForm.class);
-        startActivity(retrieve);
+        Intent intent=null;
+
+        switch(v.getId())
+        {
+            case R.id.dis_list_btn:
+                intent =new Intent(this, Store_DisbursementList.class);
+                break;
+
+
+            case R.id.retivial_form_btn:
+                intent =new Intent(this, Store_RetrivalForm.class);
+                break;
+
+
+
+            case R.id.stockcheck_btn:
+                intent =new Intent(this, Store_StockCheckList.class);
+                break;
+        }
+     if (intent!=null)
+         startActivity(intent);
 
     }
 }

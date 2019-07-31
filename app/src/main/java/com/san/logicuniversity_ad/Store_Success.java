@@ -5,22 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
-public class DisbursementList extends AppCompatActivity
-    implements View.OnClickListener {
+public class Store_Success extends AppCompatActivity
+        implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_disbursementlist);
+        setContentView(R.layout.activity_store_success);
 
-        Button btn=findViewById(R.id.button);
-        btn.setOnClickListener(this);
+        TextView txt=findViewById(R.id.hometv);
+        txt.setOnClickListener(this);
     }
+
     public void onClick(View v)
     {
-        Intent view=new Intent(this,Success.class);
+        Intent view=new Intent(this,StoreClerk_menu.class);
         startActivity(view);
 
     }

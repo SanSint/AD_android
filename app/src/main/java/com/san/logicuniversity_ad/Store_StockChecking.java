@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ViewDisbursementList extends AppCompatActivity {
+public class Store_StockChecking extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_disbursement_list);
+        setContentView(R.layout.activity_store_stock_checking);
     }
 }
