@@ -18,12 +18,15 @@
         <activity android:name=".Store_DisbursementList" />
         <activity android:name=".Store_RetrivalForm" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".StoreClerk_menu">
+        <activity android:name=".DepartmentHeadMain" />
+        <activity android:name=".LoginTemp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".StoreClerk_menu">
         </activity>
     </application>
 
