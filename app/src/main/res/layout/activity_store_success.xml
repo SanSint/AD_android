@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:linksClickable="true"
-                android:text="Back To Home"
+                android:text="@string/home"
                 android:textAlignment="center"
                 android:textColorLink="#0F0E0E"
                 android:textSize="25dp" />
