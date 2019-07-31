@@ -22,7 +22,7 @@ public class Store_Success extends AppCompatActivity
         txt.setOnClickListener(this);
     }
 
-    
+
 
     public void onClick(View v)
     {
