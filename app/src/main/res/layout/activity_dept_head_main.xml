@@ -34,7 +34,7 @@
         android:id="@+id/change_rep_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="52dp"
+        android:layout_marginLeft="84dp"
         android:text="@string/rep"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.2"
