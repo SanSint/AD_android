@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.san.logicuniversity_ad">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,12 +14,12 @@
         android:theme="@style/AppTheme">
 
 
-        <activity android:name=".Store_StockChecking" />
-        <activity android:name=".Store_StockCheckList" />
-        <activity android:name=".Store_Success" />
-        <activity android:name=".Store_ViewDisbursementList" />
-        <activity android:name=".Store_DisbursementList" />
-        <activity android:name=".Store_RetrivalForm" />
+        <activity android:name=".ui.store.Store_StockChecking" />
+        <activity android:name=".ui.store.Store_StockCheckList" />
+        <activity android:name=".ui.store.Store_Success" />
+        <activity android:name=".ui.store.Store_ViewDisbursementList" />
+        <activity android:name=".ui.store.Store_DisbursementList" />
+        <activity android:name=".ui.store.Store_RetrivalForm" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".DepartmentHeadMain" />
         <activity android:name=".LoginTemp">
@@ -26,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StoreClerk_menu">
+        <activity android:name=".ui.store.StoreClerk_menu">
         </activity>
     </application>
 

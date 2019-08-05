@@ -1,4 +1,4 @@
-package com.san.logicuniversity_ad;
+package com.san.logicuniversity_ad.ui.store;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,16 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.san.logicuniversity_ad.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Store_Success_Disbursement.OnFragmentInteractionListener} interface
+ * {@link Store_Success_Retrieval.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Store_Success_Disbursement#newInstance} factory method to
+ * Use the {@link Store_Success_Retrieval#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Store_Success_Disbursement extends Fragment {
+public class Store_Success_Retrieval extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +33,7 @@ public class Store_Success_Disbursement extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Store_Success_Disbursement() {
+    public Store_Success_Retrieval() {
         // Required empty public constructor
     }
 
@@ -41,11 +43,11 @@ public class Store_Success_Disbursement extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Store_Success_Disbursement.
+     * @return A new instance of fragment Store_Success_Retrieval.
      */
     // TODO: Rename and change types and number of parameters
-    public static Store_Success_Disbursement newInstance(String param1, String param2) {
-        Store_Success_Disbursement fragment = new Store_Success_Disbursement();
+    public static Store_Success_Retrieval newInstance(String param1, String param2) {
+        Store_Success_Retrieval fragment = new Store_Success_Retrieval();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +68,7 @@ public class Store_Success_Disbursement extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store__success__disbursement, container, false);
+        return inflater.inflate(R.layout.fragment_store__success__retrieval, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

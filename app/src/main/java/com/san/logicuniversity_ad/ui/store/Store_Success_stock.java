@@ -1,4 +1,4 @@
-package com.san.logicuniversity_ad;
+package com.san.logicuniversity_ad.ui.store;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.san.logicuniversity_ad.R;
 
 
 /**

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Store_Success_stock">
+    tools:context=".ui.store.Store_Success_stock">
 
     <!-- TODO: Update blank fragment layout -->
 

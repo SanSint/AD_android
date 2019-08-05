@@ -16,14 +16,7 @@
     <string name="zone">Fliter By Zone: </string>
 
     <string-array name="zonelist">
-        <item>Zone A</item>
-        <item>Zone B</item>
-        <item>Zone C</item>
-        <item>Zone D</item>
-        <item>Zone E</item>
-        <item>Zone F</item>
-        <item>Zone G</item>
-        <item>Zone H</item>
+        <item>All</item>
     </string-array>
     <string name="title_activity_successpage">Successpage</string>
 

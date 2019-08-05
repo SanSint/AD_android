@@ -1,14 +1,13 @@
-package com.san.logicuniversity_ad;
+package com.san.logicuniversity_ad.ui.store;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.san.logicuniversity_ad.R;
 
 public class Store_Success extends AppCompatActivity
         implements View.OnClickListener {
