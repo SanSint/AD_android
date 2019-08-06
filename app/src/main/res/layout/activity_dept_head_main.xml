@@ -22,23 +22,22 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/delegate"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/change_rep_button"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintLeft_toRightOf="@id/pending_requests_button"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.249"
         app:layout_constraintWidth_percent="0.3" />
 
     <Button
         android:id="@+id/change_rep_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginLeft="84dp"
         android:text="@string/rep"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/delegate_head_button"
         app:layout_constraintTop_toBottomOf="@id/pending_requests_button"
         app:layout_constraintWidth_percent="0.3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

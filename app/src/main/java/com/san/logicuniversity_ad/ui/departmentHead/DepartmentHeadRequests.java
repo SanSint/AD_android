@@ -1,10 +1,11 @@
-package com.san.logicuniversity_ad;
+package com.san.logicuniversity_ad.ui.departmentHead;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.Request;
 
 import java.util.ArrayList;
