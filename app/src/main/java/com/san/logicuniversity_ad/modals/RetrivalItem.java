@@ -4,12 +4,14 @@ public class RetrivalItem {
     private String itemNumber;
     private String category;
     private String zone;
+    private String description;
     private int qtyNeeded;
     private int qtyRetrieved;
 
-    public RetrivalItem(String itemNumber, String category, String zone, int qtyNeeded, int qtyRetrieved) {
+    public RetrivalItem(String itemNumber, String category, String description, String zone, int qtyNeeded, int qtyRetrieved) {
         this.itemNumber = itemNumber;
         this.category = category;
+        this.description = description;
         this.zone = zone;
         this.qtyNeeded = qtyNeeded;
         this.qtyRetrieved = qtyRetrieved;
@@ -53,5 +55,13 @@ public class RetrivalItem {
 
     public void setQtyRetrieved(int qtyRetrieved) {
         this.qtyRetrieved = qtyRetrieved;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

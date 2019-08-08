@@ -5,22 +5,23 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.store.StoreClerkMainActivity" android:theme="@style/AppTheme.NoActionBar">
 
-
+        </activity>
         <activity android:name=".ui.store.Store_StockChecking" />
         <activity android:name=".ui.store.Store_StockCheckList" />
         <activity android:name=".ui.store.Store_Success" />
         <activity android:name=".ui.store.Store_ViewDisbursementList" />
         <activity android:name=".ui.store.Store_DisbursementList" />
-        <activity android:name=".ui.store.Store_RetrivalForm" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".ui.store.Store_RetrivalForm" android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".DepartmentHeadMain" />
         <activity android:name=".LoginTemp">
             <intent-filter>
@@ -29,8 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.store.StoreClerk_menu">
+
+        <activity android:name=".LoginActivity" android:theme="@style/AppTheme.NoActionBar" >
+
         </activity>
+
+        <activity android:name=".ui.store.StoreClerk_menu" android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

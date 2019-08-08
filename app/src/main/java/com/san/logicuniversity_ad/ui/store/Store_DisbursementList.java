@@ -7,13 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.san.logicuniversity_ad.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
 import com.san.logicuniversity_ad.R;
-import com.san.logicuniversity_ad.adaptors.DisbursementAdaptor;
+import com.san.logicuniversity_ad.utils.adaptors.DisbursementAdaptor;
 import com.san.logicuniversity_ad.modals.Disbursement;
 
 import org.json.JSONArray;
@@ -84,7 +83,7 @@ public class Store_DisbursementList extends AppCompatActivity
                 disbursementArrayList.add(d);
             }
 
-            DisbursementAdaptor da = new DisbursementAdaptor(disbursementArrayList);
+            DisbursementAdaptor da = new DisbursementAdaptor(disbursementArrayList, this);
             rvDisbursement.setAdapter(da);
 
 

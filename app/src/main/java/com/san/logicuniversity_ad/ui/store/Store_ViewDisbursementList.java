@@ -11,9 +11,7 @@ import com.san.logicuniversity_ad.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
 import com.san.logicuniversity_ad.R;
-import com.san.logicuniversity_ad.adaptors.DisbursementAdaptor;
-import com.san.logicuniversity_ad.adaptors.DisbursementItemAdaptor;
-import com.san.logicuniversity_ad.modals.Disbursement;
+import com.san.logicuniversity_ad.utils.adaptors.DisbursementItemAdaptor;
 import com.san.logicuniversity_ad.modals.DisbursementItem;
 
 import org.json.JSONArray;

@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
+    android:id="@+id/disbursement_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
@@ -13,7 +13,8 @@
     android:layout_marginTop="16dp"
     android:layout_marginEnd="16dp"
     android:layout_marginRight="16dp"
-    android:layout_marginBottom="16dp">
+    android:layout_marginBottom="16dp"
+    android:transitionName="transition_card">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,6 +52,7 @@
                 android:text="Department: Registrar"
                 android:textAllCaps="false"
                 android:textSize="18sp"
+                android:transitionName="transition_department"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_disbursement_id"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_done_by" />

@@ -10,9 +10,7 @@ import com.san.logicuniversity_ad.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
 import com.san.logicuniversity_ad.R;
-import com.san.logicuniversity_ad.adaptors.StocktakeAdaptor;
-import com.san.logicuniversity_ad.adaptors.StocktakeItemAdaptor;
-import com.san.logicuniversity_ad.modals.Stocktake;
+import com.san.logicuniversity_ad.utils.adaptors.StocktakeItemAdaptor;
 import com.san.logicuniversity_ad.modals.StocktakeItem;
 
 import org.json.JSONArray;

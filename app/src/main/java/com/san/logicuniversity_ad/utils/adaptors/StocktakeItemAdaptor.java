@@ -1,4 +1,4 @@
-package com.san.logicuniversity_ad.adaptors;
+package com.san.logicuniversity_ad.utils.adaptors;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.san.logicuniversity_ad.R;
-import com.san.logicuniversity_ad.modals.DisbursementItem;
-import com.san.logicuniversity_ad.modals.Stocktake;
 import com.san.logicuniversity_ad.modals.StocktakeItem;
 
 import java.util.List;

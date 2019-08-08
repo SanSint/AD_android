@@ -1,31 +1,42 @@
-package com.san.logicuniversity_ad.ui.store;
+package com.san.logicuniversity_ad.ui.store.fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Context;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.san.logicuniversity_ad.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
 import com.san.logicuniversity_ad.R;
-import com.san.logicuniversity_ad.utils.adaptors.RetrivalItemAdaptor;
 import com.san.logicuniversity_ad.modals.RetrivalItem;
+import com.san.logicuniversity_ad.utils.adaptors.RetrivalItemAdaptor;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Store_RetrivalForm extends AppCompatActivity
-        implements View.OnClickListener, AsyncToServer.IServerResponse {
+
+public class StoreRetrivalListFragment extends Fragment implements AsyncToServer.IServerResponse {
 
     private final String GET_ZONES_URL = BuildConfig.API_BASE_URL + "/store/zones";
     private final String GET_RETRIVAL_LIST_URL = BuildConfig.API_BASE_URL + "/store/retrival-list";
@@ -34,18 +45,46 @@ public class Store_RetrivalForm extends AppCompatActivity
     Spinner zoneFilter;
     RecyclerView rvRetrival;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_retrival_form);
 
-        zoneFilter = findViewById(R.id.zone_fliter);
-        zoneFilter.setSelection(0);
+    public StoreRetrivalListFragment() {
+    }
+
+    public static StoreRetrivalListFragment newInstance(String param1, String param2) {
+        StoreRetrivalListFragment fragment = new StoreRetrivalListFragment();
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+
+        }
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_store_retrival_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        zoneFilter = view.findViewById(R.id.zone_filter);
+//        zoneFilter.setSelection(0);
 
         zoneFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 requestRetrivalItemList();
+                TextView t = ((TextView)adapterView.getChildAt(0));
+                t.setTextColor(Color.WHITE);
+                t.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             }
 
             @Override
@@ -54,22 +93,15 @@ public class Store_RetrivalForm extends AppCompatActivity
             }
         });
 
-        Button btn = findViewById(R.id.btn_submit);
-        btn.setOnClickListener(this);
 
         requestZones();
 
-        rvRetrival = findViewById(R.id.retrieval_rv);
+
+        rvRetrival = view.findViewById(R.id.retrieval_rv);
         rvRetrival.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(RecyclerView.VERTICAL);
-        rvRetrival.setLayoutManager(llm);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        rvRetrival.setLayoutManager(layoutManager);
 
-    }
-
-    public void onClick(View v) {
-        Intent view = new Intent(this, Store_Success.class);
-        startActivity(view);
     }
 
     private void requestZones() {
@@ -119,9 +151,9 @@ public class Store_RetrivalForm extends AppCompatActivity
                 zoneList.add(zonesJArr.getString(i));
             }
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                     android.R.layout.simple_spinner_item, zoneList);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(R.layout.spinner_item);
             zoneFilter.setAdapter(adapter);
             zoneFilter.setSelection(0);
 
@@ -156,4 +188,6 @@ public class Store_RetrivalForm extends AppCompatActivity
             e.printStackTrace();
         }
     }
+
+
 }

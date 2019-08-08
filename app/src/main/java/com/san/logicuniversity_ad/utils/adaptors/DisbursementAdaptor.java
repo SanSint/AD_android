@@ -1,5 +1,7 @@
-package com.san.logicuniversity_ad.adaptors;
+package com.san.logicuniversity_ad.utils.adaptors;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.Disbursement;
+import com.san.logicuniversity_ad.ui.store.Store_DisbursementList;
 import com.san.logicuniversity_ad.ui.store.Store_ViewDisbursementList;
 
 import java.util.List;
@@ -19,9 +24,11 @@ import java.util.List;
 public class DisbursementAdaptor extends  RecyclerView.Adapter<DisbursementAdaptor.DisbursementViewHolder> {
 
     List<Disbursement> disbursementList;
+    private Context context;
 
-    public DisbursementAdaptor(List<Disbursement> disbursementList) {
+    public DisbursementAdaptor(List<Disbursement> disbursementList, Context context) {
         this.disbursementList = disbursementList;
+        this.context = context;
     }
 
     @NonNull
@@ -50,6 +57,7 @@ public class DisbursementAdaptor extends  RecyclerView.Adapter<DisbursementAdapt
         protected TextView tvDoneBy;
         protected TextView tvDepartment;
         protected Button btnView;
+        protected CardView cvDisbursementCard;
 
         public DisbursementViewHolder(View v) {
             super(v);
@@ -58,13 +66,20 @@ public class DisbursementAdaptor extends  RecyclerView.Adapter<DisbursementAdapt
             tvDoneBy = v.findViewById(R.id.tv_done_by);
             tvDepartment = v.findViewById(R.id.tv_department);
             btnView = v.findViewById(R.id.btn_view);
+            cvDisbursementCard = v.findViewById(R.id.disbursement_card);
 
             btnView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(view.getContext(), Store_ViewDisbursementList.class);
                     i.putExtra("disbursementId", tvDisbursementId.getText());
-                    view.getContext().startActivity(i);
+                    if(context instanceof Store_DisbursementList) {
+                        ActivityOptionsCompat options = ActivityOptionsCompat
+                                .makeSceneTransitionAnimation((Activity) context, cvDisbursementCard, "transition_card");
+                        context.startActivity(i, options.toBundle());
+                    } else {
+                        context.startActivity(i);
+                    }
                 }
             });
         }
