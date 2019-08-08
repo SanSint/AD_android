@@ -12,6 +12,7 @@ import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.adaptors.PendingRequestsAdapter;
 import com.san.logicuniversity_ad.modals.Employee;
 import com.san.logicuniversity_ad.modals.Request;
+import com.san.logicuniversity_ad.util.DateUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -84,10 +85,12 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
                 JSONObject request = requestsArray.getJSONObject(i);
                 int requestID = request.getInt("ID");
                 String requestor = request.getString("NAME");
+                String date = request.getString("REQUEST_DATE");
+                LocalDate date1 = DateUtil.parseMsTimestampToDate(date);
                 Request requestObj  = new Request();
                 requestObj.setID(requestID);
                 requestObj.setSUBMITTED_BY(requestor);
-                requestObj.setREQUEST_DATE(testdate);
+                requestObj.setREQUEST_DATE(date1);
                 System.out.println("ID: " + requestID + ", employeeName: " + requestor);
                 requestlist.add(requestObj);
             }
