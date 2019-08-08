@@ -22,7 +22,7 @@
         <activity android:name=".ui.store.Store_DisbursementList" />
         <activity android:name=".ui.store.Store_RetrivalForm" android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".DepartmentHeadMain" />
+        <!--<activity android:name=".DepartmentHeadMain" />-->
         <activity android:name=".LoginTemp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

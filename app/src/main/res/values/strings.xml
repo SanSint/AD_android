@@ -25,5 +25,6 @@
     <string name="pending">Pending Requests</string>
     <string name="delegate">Delegate Head</string>
     <string name="rep">Appoint Rep</string>
+    <string name="pending_requests_header">Pending Requests</string>
 
 </resources>
