@@ -8,14 +8,14 @@ public class Request {
     public LocalDate APPROVED_DATE;
     public String STATUS;
     public int DEPARTMENT_ID;
-    public Employee SUBMITTED_BY;
+    public String SUBMITTED_BY;
     public Employee APPROVED_BY;
 
     public Request() {
     }
 
 
-    public Request(int ID, LocalDate REQUEST_DATE, LocalDate APPROVED_DATE, String STATUS, int DEPARTMENT_ID, Employee SUBMITTED_BY, Employee APPROVED_BY) {
+    public Request(int ID, LocalDate REQUEST_DATE, LocalDate APPROVED_DATE, String STATUS, int DEPARTMENT_ID, String SUBMITTED_BY, Employee APPROVED_BY) {
         this.ID = ID;
         this.REQUEST_DATE = REQUEST_DATE;
         this.APPROVED_DATE = APPROVED_DATE;
@@ -65,11 +65,11 @@ public class Request {
         this.DEPARTMENT_ID = DEPARTMENT_ID;
     }
 
-    public Employee getSUBMITTED_BY() {
+    public String getSUBMITTED_BY() {
         return SUBMITTED_BY;
     }
 
-    public void setSUBMITTED_BY(Employee SUBMITTED_BY) {
+    public void setSUBMITTED_BY(String SUBMITTED_BY) {
         this.SUBMITTED_BY = SUBMITTED_BY;
     }
 
