@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.san.logicuniversity_ad.ui.store.StoreClerkMainActivity;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class  LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText etUsername;
     EditText etPassword;
