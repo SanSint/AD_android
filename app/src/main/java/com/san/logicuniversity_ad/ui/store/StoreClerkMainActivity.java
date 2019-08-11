@@ -21,8 +21,10 @@ public class StoreClerkMainActivity extends AppCompatActivity {
         TabLayout storeTabLayout = findViewById(R.id.store_tabs);
         TabItem retrivalTab = findViewById(R.id.retrieval_tab);
         TabItem disbursementTab = findViewById(R.id.disbursement_tab);
-        TabItem stockTab = findViewById(R.id.stock_tab);
         final ViewPager storeViewPager = findViewById(R.id.store_view_pager);
+
+        // set margin between Tab items
+        storeViewPager.setPageMargin(48);
 
         StorePageAdaptor storePageAdaptor = new StorePageAdaptor(getSupportFragmentManager(), storeTabLayout.getTabCount());
         storeViewPager.setAdapter(storePageAdaptor);

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#E91E63</color>
-    <color name="colorPrimaryDark">#B0003A</color>
-    <color name="colorAccent">#FF6090</color>
-    <color name="colorSecondary">#f8bbd0</color>
-    <color name="colorSecondaryDark">#c48b9f</color>
-    <color name="colorSecondaryAccent">#FFEEFF</color>
-    <color name="spinner_text_color">#FFFFFF</color>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--Store Colors-->
+    <color name="colorPrimaryStore">#E91E63</color>
+    <color name="colorPrimaryDarkStore">#B0003A</color>
+    <color name="colorAccentStore">#FF6090</color>
+    <color name="colorSecondaryStore">#f8bbd0</color>
+    <color name="colorSecondaryDarkStore">#c48b9f</color>
+    <color name="colorSecondaryAccentStore">#FFEEFF</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
+
 </resources>

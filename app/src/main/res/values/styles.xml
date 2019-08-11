@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+    <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,7 +10,7 @@
         <item name="android:windowContentTransitions">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -19,16 +19,34 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <!--Store Functions Style-->
+    <style name="StoreAppTheme" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/colorPrimaryStore</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkStore</item>
+        <item name="colorAccent">@color/colorAccentStore</item>
+
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+
+    <style name="StoreAppTheme.NoActionBar" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/colorPrimaryStore</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkStore</item>
+        <item name="colorAccent">@color/colorAccentStore</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="mySpinnerItemStyle" parent="Widget.AppCompat.Spinner">
-        <item name="android:textColor">@color/spinner_text_color</item>
-    </style>
-
-    <style name="spinnerTheme">
-        <item name="android:textColor">@color/spinner_text_color</item>
+    <style name="HintText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 

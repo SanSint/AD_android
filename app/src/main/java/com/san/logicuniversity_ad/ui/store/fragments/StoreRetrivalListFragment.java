@@ -38,11 +38,8 @@ import java.util.ArrayList;
 
 public class StoreRetrivalListFragment extends Fragment implements AsyncToServer.IServerResponse {
 
-    private final String GET_ZONES_URL = BuildConfig.API_BASE_URL + "/store/zones";
     private final String GET_RETRIVAL_LIST_URL = BuildConfig.API_BASE_URL + "/store/retrival-list";
-    private final String GET_RETRIVAL_LIST_BY_ZONE_URL = BuildConfig.API_BASE_URL + "/store/retrival-list/zone";
 
-    Spinner zoneFilter;
     RecyclerView rvRetrival;
 
 
@@ -75,50 +72,18 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        zoneFilter = view.findViewById(R.id.zone_filter);
-//        zoneFilter.setSelection(0);
-
-        zoneFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                requestRetrivalItemList();
-                TextView t = ((TextView)adapterView.getChildAt(0));
-                t.setTextColor(Color.WHITE);
-                t.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-        requestZones();
-
 
         rvRetrival = view.findViewById(R.id.retrieval_rv);
         rvRetrival.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         rvRetrival.setLayoutManager(layoutManager);
 
-    }
-
-    private void requestZones() {
-        Command cmd = new Command(this, "getZones", GET_ZONES_URL, null);
-        new AsyncToServer().execute(cmd);
+        requestRetrivalItemList();
     }
 
     private void requestRetrivalItemList() {
-        String selectedZone = zoneFilter.getSelectedItem().toString();
-
-        if (selectedZone.equals("All")) {
-            Command cmd = new Command(this, "getRetrivalList", GET_RETRIVAL_LIST_URL, null);
-            new AsyncToServer().execute(cmd);
-        } else {
-            Command cmd = new Command(this, "getRetrivalList", GET_RETRIVAL_LIST_BY_ZONE_URL + "/" + selectedZone, null);
-            new AsyncToServer().execute(cmd);
-        }
+        Command cmd = new Command(this, "getRetrivalList", GET_RETRIVAL_LIST_URL, null);
+        new AsyncToServer().execute(cmd);
     }
 
     @Override
@@ -129,9 +94,7 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
         try {
             String context = (String) jsonObj.get("context");
 
-            if (context.compareTo("getZones") == 0) {
-                onGetZones(jsonObj);
-            } else if (context.compareTo("getRetrivalList") == 0) {
+            if (context.compareTo("getRetrivalList") == 0) {
                 onGetRetrivalList(jsonObj);
             }
         } catch (Exception e) {
@@ -139,27 +102,6 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
         }
 
 
-    }
-
-    private void onGetZones(JSONObject jsonObj) {
-        try {
-            ArrayList<String> zoneList = new ArrayList<>();
-            zoneList.add("All");
-            JSONArray zonesJArr = (JSONArray) jsonObj.get("result");
-
-            for (int i = 0, count = zonesJArr.length(); i < count; i++) {
-                zoneList.add(zonesJArr.getString(i));
-            }
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                    android.R.layout.simple_spinner_item, zoneList);
-            adapter.setDropDownViewResource(R.layout.spinner_item);
-            zoneFilter.setAdapter(adapter);
-            zoneFilter.setSelection(0);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void onGetRetrivalList(JSONObject jsonObj) {
@@ -173,7 +115,6 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
                         riJson.getString("itemNumber"),
                         riJson.getString("category"),
                         riJson.getString("description"),
-                        riJson.getString("Zone"),
                         riJson.getInt("QtyNeeded"),
                         riJson.getInt("QtyNeeded"));
 

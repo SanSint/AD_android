@@ -12,18 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.StoreClerkMainActivity" android:theme="@style/AppTheme.NoActionBar">
 
-        </activity>
-        <activity android:name=".ui.store.Store_StockChecking" />
-        <activity android:name=".ui.store.Store_StockCheckList" />
-        <activity android:name=".ui.store.Store_Success" />
-        <activity android:name=".ui.store.Store_ViewDisbursementList" />
-        <activity android:name=".ui.store.Store_DisbursementList" />
-        <activity android:name=".ui.store.Store_RetrivalForm" android:theme="@style/AppTheme.NoActionBar" />
 
         <!--<activity android:name=".DepartmentHeadMain" />-->
         <activity android:name=".LoginTemp">
+
+        </activity>
+
+
+
+        <!--Store Activities-->
+        <activity android:name=".ui.store.StoreClerkMainActivity" android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".ui.store.Store_ViewDisbursementList" />
+        <activity android:name=".LoginActivity" android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,11 +34,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity" android:theme="@style/AppTheme.NoActionBar" >
-
-        </activity>
-
-        <activity android:name=".ui.store.StoreClerk_menu" android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

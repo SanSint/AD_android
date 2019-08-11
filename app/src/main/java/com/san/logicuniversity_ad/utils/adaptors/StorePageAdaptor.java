@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.san.logicuniversity_ad.ui.store.fragments.StoreDisbursementListFragment;
 import com.san.logicuniversity_ad.ui.store.fragments.StoreRetrivalListFragment;
-import com.san.logicuniversity_ad.ui.store.fragments.StoreStockListFragment;
 
 public class StorePageAdaptor extends FragmentPagerAdapter {
 
@@ -25,8 +24,6 @@ public class StorePageAdaptor extends FragmentPagerAdapter {
                 return new StoreRetrivalListFragment();
             case 1:
                 return new StoreDisbursementListFragment();
-            case 2:
-                return new StoreStockListFragment();
 
                 default:
                     return null;

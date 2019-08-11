@@ -33,7 +33,6 @@ public class RetrivalItemAdaptor extends RecyclerView.Adapter<RetrivalItemAdapto
         retrivalItemViewHolder.tvItemNumber.setText(ri.getItemNumber());
         retrivalItemViewHolder.tvCategory.setText(ri.getCategory());
         retrivalItemViewHolder.tvDescription.setText(ri.getDescription());
-        retrivalItemViewHolder.tvZone.setText(ri.getZone());
         retrivalItemViewHolder.tvQtyNeeded.setText(ri.getQtyNeeded() + "");
         retrivalItemViewHolder.etQtyRetrieved.setText(ri.getQtyNeeded() + "");
 
@@ -50,7 +49,6 @@ public class RetrivalItemAdaptor extends RecyclerView.Adapter<RetrivalItemAdapto
     public class RetrivalItemViewHolder extends RecyclerView.ViewHolder {
         public TextView tvItemNumber;
         public TextView tvCategory;
-        public TextView tvZone;
         public TextView tvQtyNeeded;
         public TextView tvDescription;
         public EditText etQtyRetrieved;
@@ -60,7 +58,6 @@ public class RetrivalItemAdaptor extends RecyclerView.Adapter<RetrivalItemAdapto
 
             tvItemNumber = v.findViewById(R.id.tv_item_number);
             tvCategory = v.findViewById(R.id.tv_category);
-            tvZone = v.findViewById(R.id.tv_zone);
             tvQtyNeeded = v.findViewById(R.id.tv_qty_needed);
             etQtyRetrieved = v.findViewById(R.id.et_qty_retrieved);
             tvDescription = v.findViewById(R.id.tv_desc);

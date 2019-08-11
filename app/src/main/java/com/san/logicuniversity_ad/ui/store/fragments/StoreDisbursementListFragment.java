@@ -4,23 +4,36 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.BuildConfig;
+import com.san.logicuniversity_ad.Command;
 import com.san.logicuniversity_ad.R;
+import com.san.logicuniversity_ad.modals.Disbursement;
+import com.san.logicuniversity_ad.utils.adaptors.DisbursementAdaptor;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link StoreDisbursementListFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link StoreDisbursementListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class StoreDisbursementListFragment extends Fragment {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+public class StoreDisbursementListFragment extends Fragment implements AsyncToServer.IServerResponse {
+
+//    private OnFragmentInteractionListener mListener;
+
+    private final String GET_DISBURSEMENT_LIST_URL = BuildConfig.API_BASE_URL + "/store/disbursement-list";
+
+    RecyclerView rvDisbursement;
 
     public StoreDisbursementListFragment() {
         // Required empty public constructor
@@ -45,5 +58,91 @@ public class StoreDisbursementListFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_store_disbursement_list, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        rvDisbursement = view.findViewById(R.id.rv_disbursements);
+        rvDisbursement.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        rvDisbursement.setLayoutManager(layoutManager);
+
+        requestDisbursementList();
+    }
+
+    private void requestDisbursementList() {
+        Command cmd = new Command(this, "getDisbursements", GET_DISBURSEMENT_LIST_URL, null);
+        new AsyncToServer().execute(cmd);
+    }
+
+    @Override
+    public void onServerResponse(JSONObject jsonObj) {
+        if (jsonObj == null) {
+            return;
+        }
+        try {
+            String context = (String) jsonObj.get("context");
+
+            if (context.compareTo("getDisbursements") == 0) {
+                onGetDisbursementList(jsonObj);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void onGetDisbursementList(JSONObject jsonObj) {
+        try {
+            ArrayList<Disbursement> disbursementArrayList= new ArrayList<>();
+            JSONArray riArr = (JSONArray) jsonObj.get("result");
+
+            for (int i = 0, count = riArr.length(); i < count; i++) {
+                JSONObject riJson = riArr.getJSONObject(i);
+                Disbursement d = new Disbursement(
+                        riJson.getString("disbursementId"),
+                        riJson.getString("department"),
+                        riJson.getString("doneBy"));
+
+                disbursementArrayList.add(d);
+            }
+
+            DisbursementAdaptor da = new DisbursementAdaptor(disbursementArrayList,getContext());
+            rvDisbursement.setAdapter(da);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public void onViewDetails(String disbursementId) {
+//        if (mListener != null) {
+//            mListener.onViewDisbursementDetails(disbursementId);
+//        }
+//    }
+
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
+//    }
+//
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//    }
+//
+//    public interface OnFragmentInteractionListener {
+//        void onViewDisbursementDetails(String disbursementId);
+//    }
 
 }

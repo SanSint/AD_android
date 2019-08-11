@@ -6,15 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="16dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginRight="16dp"
-    android:layout_marginBottom="16dp"
-    android:transitionName="transition_card">
+    android:transitionName="transition_card"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,57 +25,70 @@
 
             <TextView
                 android:id="@+id/tv_done_by"
-                android:layout_width="0dp"
-                android:layout_height="19dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Done by Jordan"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Jordan"
                 android:textAllCaps="true"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/tv_disbursement_id"
+                android:textColor="#888888"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_department"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Department: Registrar"
-                android:textAllCaps="false"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Registrar"
+                android:textAllCaps="true"
+                android:textColor="#888888"
                 android:textSize="18sp"
-                android:transitionName="transition_department"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_disbursement_id"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_done_by" />
+                app:layout_constraintStart_toStartOf="@+id/tv"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_disbursement_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="ID: D001"
+                android:layout_marginStart="8dp"
+                android:text="D001"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
-                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/tv"
+                app:layout_constraintTop_toTopOf="@+id/tv" />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="No:"
+                android:textColor="@color/colorPrimaryStore"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_done_by" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_view"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="View Details"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_done_by" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_done_by" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

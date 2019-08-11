@@ -1,6 +1,5 @@
 package com.san.logicuniversity_ad.utils.adaptors;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,17 +10,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.Disbursement;
-import com.san.logicuniversity_ad.ui.store.Store_DisbursementList;
 import com.san.logicuniversity_ad.ui.store.Store_ViewDisbursementList;
 
 import java.util.List;
 
-public class DisbursementAdaptor extends  RecyclerView.Adapter<DisbursementAdaptor.DisbursementViewHolder> {
+public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdaptor.DisbursementViewHolder> {
 
     List<Disbursement> disbursementList;
     private Context context;
@@ -73,13 +70,13 @@ public class DisbursementAdaptor extends  RecyclerView.Adapter<DisbursementAdapt
                 public void onClick(View view) {
                     Intent i = new Intent(view.getContext(), Store_ViewDisbursementList.class);
                     i.putExtra("disbursementId", tvDisbursementId.getText());
-                    if(context instanceof Store_DisbursementList) {
-                        ActivityOptionsCompat options = ActivityOptionsCompat
-                                .makeSceneTransitionAnimation((Activity) context, cvDisbursementCard, "transition_card");
-                        context.startActivity(i, options.toBundle());
-                    } else {
-                        context.startActivity(i);
-                    }
+                    context.startActivity(i);
+
+//                    view.setVisibility(View.GONE);
+//                    ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.fragment_frame, new StoreDisbursementDetailsFragment())
+//                            .commit();
+
                 }
             });
         }
