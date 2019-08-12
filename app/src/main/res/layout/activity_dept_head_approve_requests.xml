@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/pending_requests_header"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#e1bee7"
+        android:gravity="center_vertical"
+        android:padding="15sp"
+        android:text="@string/pending_requests_header"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/request_id_label"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:padding="10sp"
+        android:text="@string/request_id_label"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pending_requests_header" />
+
+    <TextView
+        android:id="@+id/request_id_pending"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:padding="10sp"
+        android:text="@string/loading"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintLeft_toRightOf="@id/request_id_label"
+        app:layout_constraintTop_toBottomOf="@id/pending_requests_header" />
+
+    <TextView
+        android:id="@+id/requestor_label"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_vertical"
+        android:padding="10sp"
+        android:text="@string/requestor_label"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/request_id_label" />
+
+    <TextView
+        android:id="@+id/requestor"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:padding="10sp"
+        android:text="@string/loading"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        app:layout_constraintHeight_percent="0.08"
+
+        app:layout_constraintLeft_toLeftOf="@id/request_id_pending"
+        app:layout_constraintTop_toBottomOf="@id/request_id_label" />
+
+    <LinearLayout
+        android:id="@+id/single_request_col_heading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#fff1ff"
+        android:layout_marginTop="10dp"
+
+        android:orientation="horizontal"
+
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/requestor_label"
+        app:layout_constraintWidth_percent="0.9">
+
+        <TextView
+            android:id="@+id/requests_id_column"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Description"
+            android:textColor="#000" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="#000"/>
+        <TextView
+            android:id="@+id/requestor_column"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Quantity"
+            android:textColor="#000" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="#000"/>
+        <TextView
+            android:id="@+id/date_column"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Price"
+            android:textColor="#000" />
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/dept_head_request_details"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:background="#000"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/single_request_col_heading"
+        app:layout_constraintWidth_percent="0.90">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/cost_label"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:padding="10sp"
+        android:text="@string/cost_label"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dept_head_request_details" />
+    <TextView
+        android:id="@+id/pending_requests_total_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:padding="10sp"
+        android:text="@string/loading"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintLeft_toRightOf="@id/cost_label"
+        app:layout_constraintTop_toBottomOf="@id/dept_head_request_details" />
+
+    <Button
+        android:id="@+id/reject_pending_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/reject"
+        android:background="#ff7961"
+        android:textColor="#000"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/approve_pending_button"
+        app:layout_constraintTop_toBottomOf="@id/cost_label"/>
+    <Button
+        android:id="@+id/approve_pending_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/approve"
+        android:background="#c8e6c9"
+        android:textColor="#000"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintLeft_toRightOf="@id/reject_pending_button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cost_label"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

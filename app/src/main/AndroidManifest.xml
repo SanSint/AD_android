@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:windowSoftInputMode="adjustNothing"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,12 +19,16 @@
 
 
         <!--<activity android:name=".DepartmentHeadMain" />-->
-
-
+        <activity android:name=".ui.departmentHead.DepartmentHeadMain" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadRequests" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadRequestDecision" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadAppointRep" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadDelegateHead" />
+        <activity android:name=".ui.departmentRep.DepartmentRepConfirmDisbursement" />
+        <activity android:name=".ui.departmentRep.DepartmentRepMain" />
 
 
         <!--Store Activities-->
-
         <activity android:name=".ui.store.StoreClerkMainActivity" android:theme="@style/StoreAppTheme.NoActionBar">
         </activity>
 
