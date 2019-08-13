@@ -31,7 +31,8 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
 
 //    private OnFragmentInteractionListener mListener;
 
-    private final String GET_DISBURSEMENT_LIST_URL = BuildConfig.API_BASE_URL + "/store/disbursement-list";
+    private int clerkId = 1;
+    private final String GET_DISBURSEMENT_LIST_URL = BuildConfig.API_BASE_URL + "/api/" + clerkId + "/disbursement-list";
 
     RecyclerView rvDisbursement;
 
@@ -104,7 +105,7 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
                 Disbursement d = new Disbursement(
                         riJson.getString("disbursementId"),
                         riJson.getString("department"),
-                        riJson.getString("doneBy"));
+                        riJson.getString("collectedBy"));
 
                 disbursementArrayList.add(d);
             }
