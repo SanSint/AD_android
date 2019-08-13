@@ -4,8 +4,9 @@ public class Disbursement {
     private String disbursementId;
     private String department;
     private String doneBy;
+    private String status;
 
-    public Disbursement(String disbursementId, String department, String doneBy) {
+    public Disbursement(String disbursementId, String department, String doneBy,String status) {
         this.disbursementId = disbursementId;
         this.department = department;
         this.doneBy = doneBy;
@@ -33,6 +34,14 @@ public class Disbursement {
 
     public void setDoneBy(String doneBy) {
         this.doneBy = doneBy;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 
