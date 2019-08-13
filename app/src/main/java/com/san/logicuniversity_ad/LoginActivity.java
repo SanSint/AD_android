@@ -134,24 +134,6 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         password = null;
     }
 
-    private void login() {
-        String username = etUsername.getText().toString();
-        String password = etPassword.getText().toString();
-
-        if (username.equals("Sansint") && password.equals("sansint")) {
-            loginResult = LoginResult.SUCCESSFUL;
-        } else if (username.equals("Head") && password.equals("head")) {
-            Intent i = new Intent(this, DepartmentHeadMain.class);
-            startActivity(i);
-        } else if (username.equals("Rep") && password.equals("rep")) {
-            Intent i = new Intent(this, DepartmentRepMain.class);
-            startActivity(i);
-        }
-        else {
-            loginResult = LoginResult.UNSUCCESSFUL;
-        }
-    }
-
     private void onLoginSuccessful() {
 
         //depthead roleid = 4 ... actingdepthead roleid = 7
@@ -169,12 +151,13 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
 
         //store roleid = 1,2,3
         else if (roleId <= 3){
-            Intent i = new Intent(this, StoreClerkMainActivity.class);
+            Intent intent = new Intent(this, StoreClerkMainActivity.class);
             ImageView logo = findViewById(R.id.iv_logo);
             ActivityOptionsCompat options = ActivityOptionsCompat
                     .makeSceneTransitionAnimation(this, logo, "transition_logo");
+            intent.putExtras(extraData);
 
-            startActivity(i, options.toBundle());
+            startActivity(intent, options.toBundle());
         }
         mShouldFinish = true;
     }
@@ -229,24 +212,6 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         super.onStop();
         if(mShouldFinish)
             finish();
-    }
-
-    class AsyncWait extends AsyncTask<Integer, Void, Void> {
-        @Override
-        protected Void doInBackground(Integer... duration) {
-
-            try {
-                Thread.sleep(duration[0]);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        protected void onPostExecute(Void v) {
-            login();
-        }
     }
 
     enum LoginResult {
