@@ -32,7 +32,7 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
 //    private OnFragmentInteractionListener mListener;
 
     private int clerkId = 1;
-    private final String GET_DISBURSEMENT_LIST_URL = BuildConfig.API_BASE_URL + "/api/" + clerkId + "/disbursement-list";
+    private final String GET_DISBURSEMENT_LIST_URL = BuildConfig.API_BASE_URL + "/api/" + clerkId + "/GetPendingDisbursements";
 
     RecyclerView rvDisbursement;
 

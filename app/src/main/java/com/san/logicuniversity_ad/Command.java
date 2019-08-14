@@ -15,5 +15,6 @@ public class Command {
         this.callback = callback;
         this.context = context;
         this.endPt = endPt;
+        this.data=data;
     }
 }
