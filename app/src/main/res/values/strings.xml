@@ -26,5 +26,18 @@
     <string name="delegate">Delegate Head</string>
     <string name="rep">Appoint Rep</string>
     <string name="pending_requests_header">Pending Requests</string>
+    <string name="request_id_label">Request ID:</string>
+    <string name="requestor_label">Requestor:</string>
+    <string name="loading">loading..</string>
+    <string name="cost_label">Total Cost:</string>
+    <string name="approve">Approve</string>
+    <string name="reject">Reject</string>
+    <string name="appoint_rep_header">Appoint Department Rep</string>
+    <string name="dept_rep_label">Current Department Representative:</string>
+    <string name="delegate_head_header">Delegate Authority</string>
+    <string name="default_acting_head_status">There is no acting head assigned.</string>
+    <string name="revoke_authority">Revoke authority</string>
+    <string name="acknowledge_disbursement">acknowledge disbursement</string>
+
 
 </resources>

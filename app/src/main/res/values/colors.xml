@@ -7,12 +7,12 @@
     <color name="colorAccent">#D81B60</color>
 
     <!--Store Colors-->
-    <color name="colorPrimaryStore">#E91E63</color>
-    <color name="colorPrimaryDarkStore">#B0003A</color>
-    <color name="colorAccentStore">#FF6090</color>
-    <color name="colorSecondaryStore">#f8bbd0</color>
-    <color name="colorSecondaryDarkStore">#c48b9f</color>
-    <color name="colorSecondaryAccentStore">#FFEEFF</color>
+    <color name="colorPrimaryStore">#4527A0</color>
+    <color name="colorPrimaryDarkStore">#000070</color>
+    <color name="colorAccentStore">#7953D2</color>
+    <color name="colorSecondaryStore">#D1C4E9</color>
+    <color name="colorSecondaryDarkStore">#A094B7</color>
+    <color name="colorSecondaryAccentStore">#FFF7FF</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
 
 </resources>

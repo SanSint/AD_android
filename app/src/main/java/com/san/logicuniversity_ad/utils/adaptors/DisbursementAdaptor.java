@@ -21,11 +21,12 @@ import java.util.List;
 public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdaptor.DisbursementViewHolder> {
 
     List<Disbursement> disbursementList;
-    private Context context;
+    ViewClickListener mListener;
 
-    public DisbursementAdaptor(List<Disbursement> disbursementList, Context context) {
+
+    public DisbursementAdaptor(List<Disbursement> disbursementList, ViewClickListener mListener) {
         this.disbursementList = disbursementList;
-        this.context = context;
+        this.mListener = mListener;
     }
 
     @NonNull
@@ -39,7 +40,7 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
     @Override
     public void onBindViewHolder(@NonNull DisbursementViewHolder holder, int position) {
         Disbursement d = disbursementList.get(position);
-        holder.tvDisbursementId.setText(d.getDisbursementId());
+        holder.tvDisbursementId.setText(d.getDisbursementId() + "");
         holder.tvDoneBy.setText(d.getDoneBy());
         holder.tvDepartment.setText(d.getDepartment());
     }
@@ -48,6 +49,12 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
     public int getItemCount() {
         return disbursementList.size();
     }
+
+
+    public interface ViewClickListener {
+        void onClickViewDetails(int disbursementId);
+    }
+
 
     public class DisbursementViewHolder extends RecyclerView.ViewHolder {
         protected TextView tvDisbursementId;
@@ -68,18 +75,21 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
             btnView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(view.getContext(), Store_ViewDisbursementList.class);
-                    i.putExtra("disbursementId", tvDisbursementId.getText());
-                    context.startActivity(i);
+//                    Intent i = new Intent(view.getContext(), Store_ViewDisbursementList.class);
+//                    i.putExtra("disbursementId", tvDisbursementId.getText());
+//                    context.startActivity(i);
 
 //                    view.setVisibility(View.GONE);
 //                    ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
 //                            .replace(R.id.fragment_frame, new StoreDisbursementDetailsFragment())
 //                            .commit();
 
+                    mListener.onClickViewDetails(Integer.parseInt(tvDisbursementId.getText().toString()));
+
                 }
             });
         }
+
 
     }
 }
