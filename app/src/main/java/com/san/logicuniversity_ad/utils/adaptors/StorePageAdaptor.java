@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.san.logicuniversity_ad.ui.store.fragments.StoreDisbursementListFragment;
+import com.san.logicuniversity_ad.ui.store.fragments.StoreDisbursementContainer;
 import com.san.logicuniversity_ad.ui.store.fragments.StoreRetrivalListFragment;
 
 public class StorePageAdaptor extends FragmentPagerAdapter {
@@ -23,7 +23,7 @@ public class StorePageAdaptor extends FragmentPagerAdapter {
             case 0:
                 return new StoreRetrivalListFragment();
             case 1:
-                return new StoreDisbursementListFragment();
+                return new StoreDisbursementContainer();
 
                 default:
                     return null;

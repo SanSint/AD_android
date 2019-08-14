@@ -38,7 +38,7 @@ import java.util.ArrayList;
 
 public class StoreRetrivalListFragment extends Fragment implements AsyncToServer.IServerResponse {
 
-    private final String GET_RETRIVAL_LIST_URL = BuildConfig.API_BASE_URL + "/store/retrival-list";
+    private final String GET_RETRIVAL_LIST_URL = BuildConfig.API_BASE_URL + "/store/retrivalList";
 
     RecyclerView rvRetrival;
 
@@ -112,11 +112,11 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
             for (int i = 0, count = riArr.length(); i < count; i++) {
                 JSONObject riJson = riArr.getJSONObject(i);
                 RetrivalItem ri = new RetrivalItem(
-                        riJson.getString("itemNumber"),
+                        riJson.getString("productId"),
                         riJson.getString("category"),
                         riJson.getString("description"),
-                        riJson.getInt("QtyNeeded"),
-                        riJson.getInt("QtyNeeded"));
+                        riJson.getInt("quantityNeeded"),
+                        riJson.getInt("quantityNeeded"));
 
                 retrivalItemArrayList.add(ri);
             }

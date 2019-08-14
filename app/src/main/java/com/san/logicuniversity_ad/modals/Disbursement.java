@@ -1,22 +1,21 @@
 package com.san.logicuniversity_ad.modals;
 
 public class Disbursement {
-    private String disbursementId;
+    private int disbursementId;
     private String department;
     private String doneBy;
-    private String status;
 
-    public Disbursement(String disbursementId, String department, String doneBy,String status) {
+    public Disbursement(int disbursementId, String department, String doneBy) {
         this.disbursementId = disbursementId;
         this.department = department;
         this.doneBy = doneBy;
     }
 
-    public String getDisbursementId() {
+    public int getDisbursementId() {
         return disbursementId;
     }
 
-    public void setDisbursementId(String disbursementId) {
+    public void setDisbursementId(int disbursementId) {
         this.disbursementId = disbursementId;
     }
 
@@ -34,14 +33,6 @@ public class Disbursement {
 
     public void setDoneBy(String doneBy) {
         this.doneBy = doneBy;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
 

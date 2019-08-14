@@ -27,12 +27,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class StoreDisbursementListFragment extends Fragment implements AsyncToServer.IServerResponse {
+public class StoreDisbursementListFragment extends Fragment implements AsyncToServer.IServerResponse, DisbursementAdaptor.ViewClickListener {
 
-//    private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener mListener;
 
     private int clerkId = 1;
-    private final String GET_DISBURSEMENT_LIST_URL = BuildConfig.API_BASE_URL + "/api/" + clerkId + "/GetPendingDisbursements";
+    private final String GET_DISBURSEMENT_LIST_URL = BuildConfig.API_BASE_URL + "/api/PendingDisbursements";
 
     RecyclerView rvDisbursement;
 
@@ -79,6 +79,13 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
     }
 
     @Override
+    public void onClickViewDetails(int disbursementId) {
+        if (mListener != null) {
+            mListener.onViewDisbursementDetails(disbursementId);
+        }
+    }
+
+    @Override
     public void onServerResponse(JSONObject jsonObj) {
         if (jsonObj == null) {
             return;
@@ -103,15 +110,14 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
             for (int i = 0, count = riArr.length(); i < count; i++) {
                 JSONObject riJson = riArr.getJSONObject(i);
                 Disbursement d = new Disbursement(
-                        riJson.getString("disbursementId"),
+                        riJson.getInt("disbursementId"),
                         riJson.getString("department"),
-                        riJson.getString("doneBy"),
-                        riJson.getString("status") );
+                        riJson.getString("deliveredBy"));
 
                 disbursementArrayList.add(d);
             }
 
-            DisbursementAdaptor da = new DisbursementAdaptor(disbursementArrayList,getContext());
+            DisbursementAdaptor da = new DisbursementAdaptor(disbursementArrayList, this);
             rvDisbursement.setAdapter(da);
 
 
@@ -120,31 +126,25 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
         }
     }
 
-//    public void onViewDetails(String disbursementId) {
-//        if (mListener != null) {
-//            mListener.onViewDisbursementDetails(disbursementId);
-//        }
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (getParentFragment() instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) getParentFragment();
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-//
-//    public interface OnFragmentInteractionListener {
-//        void onViewDisbursementDetails(String disbursementId);
-//    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onViewDisbursementDetails(int disbursementId);
+    }
 
 }
