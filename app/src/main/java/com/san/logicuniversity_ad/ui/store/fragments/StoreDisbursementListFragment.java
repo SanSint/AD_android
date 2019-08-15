@@ -73,15 +73,16 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
         requestDisbursementList();
     }
 
-    private void requestDisbursementList() {
+    public void requestDisbursementList() {
+        rvDisbursement.setAdapter(null);
         Command cmd = new Command(this, "getDisbursements", GET_DISBURSEMENT_LIST_URL, null);
         new AsyncToServer().execute(cmd);
     }
 
     @Override
-    public void onClickViewDetails(int disbursementId) {
+    public void onClickViewDetails(int disbursementId, boolean isEditable) {
         if (mListener != null) {
-            mListener.onViewDisbursementDetails(disbursementId);
+            mListener.onViewDisbursementDetails(disbursementId, isEditable);
         }
     }
 
@@ -111,8 +112,9 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
                 JSONObject riJson = riArr.getJSONObject(i);
                 Disbursement d = new Disbursement(
                         riJson.getInt("disbursementId"),
-                        riJson.getString("department"),
-                        riJson.getString("deliveredBy"));
+                        riJson.getString("collectionPoint"),
+                        riJson.getString("deliveredBy"),
+                        riJson.getString("status"));
 
                 disbursementArrayList.add(d);
             }
@@ -144,7 +146,7 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
     }
 
     public interface OnFragmentInteractionListener {
-        void onViewDisbursementDetails(int disbursementId);
+        void onViewDisbursementDetails(int disbursementId, boolean isEditable);
     }
 
 }

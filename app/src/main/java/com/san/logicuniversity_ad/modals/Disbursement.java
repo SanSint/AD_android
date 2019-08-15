@@ -4,11 +4,13 @@ public class Disbursement {
     private int disbursementId;
     private String department;
     private String doneBy;
+    private String status;
 
-    public Disbursement(int disbursementId, String department, String doneBy) {
+    public Disbursement(int disbursementId, String department, String doneBy, String status) {
         this.disbursementId = disbursementId;
         this.department = department;
         this.doneBy = doneBy;
+        this.status = status;
     }
 
     public int getDisbursementId() {
@@ -35,6 +37,11 @@ public class Disbursement {
         this.doneBy = doneBy;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
-
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

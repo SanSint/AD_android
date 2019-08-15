@@ -24,6 +24,8 @@ import com.san.logicuniversity_ad.R;
 public class StoreDisbursementContainer extends Fragment implements StoreDisbursementListFragment.OnFragmentInteractionListener, StoreDisbursementDetailsFragment.OnFragmentInteractionListener {
 
     private FragmentManager frangementManager;
+    public final String DISBURSEMENT_LIST_FRAGEMNT = "disbursement_list";
+    public final String DISBURSEMENT_DETAILS_FRAGEMNT = "disbursement_details";
 
     public StoreDisbursementContainer() {
     }
@@ -55,18 +57,12 @@ public class StoreDisbursementContainer extends Fragment implements StoreDisburs
 
         Fragment disbursementListFragment = new StoreDisbursementListFragment();
         FragmentTransaction transaction = frangementManager.beginTransaction();
-        transaction.replace(R.id.disbursements_frame, disbursementListFragment).commit();
+        transaction.replace(R.id.disbursements_frame, disbursementListFragment, DISBURSEMENT_LIST_FRAGEMNT).commit();
     }
 
     @Override
-    public void onViewDisbursementDetails(int disbursementId) {
-//        Fragment detailsFragment = StoreDisbursementDetailsFragment.newInstance(disbursementId);
-//        FragmentTransaction transaction = frangementManager.beginTransaction();
-//        transaction
-//                .replace(R.id.disbursements_frame, detailsFragment)
-//                .addToBackStack(null)
-//                .commit();
-        viewDetailsFragmentTransition(disbursementId);
+    public void onViewDisbursementDetails(int disbursementId, boolean isEditable) {
+        viewDetailsFragmentTransition(disbursementId, isEditable);
     }
 
     @Override
@@ -74,9 +70,11 @@ public class StoreDisbursementContainer extends Fragment implements StoreDisburs
         frangementManager.popBackStack();
     }
 
-    private void viewDetailsFragmentTransition(int disbursementId) {
+    private void viewDetailsFragmentTransition(int disbursementId, boolean isEditable) {
         StoreDisbursementListFragment first = (StoreDisbursementListFragment) frangementManager.findFragmentById(R.id.disbursements_frame);
-        StoreDisbursementDetailsFragment second = StoreDisbursementDetailsFragment.newInstance(disbursementId);
+        StoreDisbursementDetailsFragment second = StoreDisbursementDetailsFragment.newInstance(disbursementId, isEditable);
+
+
 
         // Inflate transitions to apply
         Transition boundTransform = new ChangeBounds();
@@ -96,9 +94,21 @@ public class StoreDisbursementContainer extends Fragment implements StoreDisburs
 
         FragmentTransaction transaction = frangementManager.beginTransaction();
         transaction
-                .replace(R.id.disbursements_frame, second)
+                .replace(R.id.disbursements_frame, second, DISBURSEMENT_DETAILS_FRAGEMNT)
                 .addToBackStack(null)
                 .addSharedElement(card, "transition_card")
                 .commit();
+    }
+
+    public void reloadDisbursements() {
+        StoreDisbursementListFragment disList = (StoreDisbursementListFragment) frangementManager.findFragmentByTag(DISBURSEMENT_LIST_FRAGEMNT);
+        StoreDisbursementDetailsFragment disDetails = (StoreDisbursementDetailsFragment) frangementManager.findFragmentByTag(DISBURSEMENT_DETAILS_FRAGEMNT);
+
+        if (disList != null && disList.isVisible()) {
+            disList.requestDisbursementList();
+        } else if (disDetails != null && disDetails.isVisible()) {
+            disDetails.requestDisbursement();
+        }
+
     }
 }

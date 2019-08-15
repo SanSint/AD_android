@@ -11,6 +11,8 @@ import android.widget.TableLayout;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.san.logicuniversity_ad.R;
+import com.san.logicuniversity_ad.ui.store.fragments.StoreDisbursementContainer;
+import com.san.logicuniversity_ad.ui.store.fragments.StoreRetrivalListFragment;
 import com.san.logicuniversity_ad.utils.adaptors.StorePageAdaptor;
 
 public class StoreClerkMainActivity extends AppCompatActivity {
@@ -28,18 +30,32 @@ public class StoreClerkMainActivity extends AppCompatActivity {
         // set margin between Tab items
         storeViewPager.setPageMargin(48);
 
-        StorePageAdaptor storePageAdaptor = new StorePageAdaptor(getSupportFragmentManager(), storeTabLayout.getTabCount());
+        final StorePageAdaptor storePageAdaptor = new StorePageAdaptor(getSupportFragmentManager(), storeTabLayout.getTabCount());
         storeViewPager.setAdapter(storePageAdaptor);
 
         storeViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(storeTabLayout));
         storeTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
                 storeViewPager.setCurrentItem(tab.getPosition());
+
+                switch (tab.getPosition()) {
+                    case 0:
+                        StoreRetrivalListFragment srF = (StoreRetrivalListFragment) storePageAdaptor.getFragment(tab.getPosition());
+                        srF.requestRetrivalItemList();
+                        break;
+                    case 1:
+                        StoreDisbursementContainer sDF = (StoreDisbursementContainer) storePageAdaptor.getFragment(tab.getPosition());
+                        sDF.reloadDisbursements();
+                        break;
+                }
             }
+
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
             }
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
             }
@@ -53,7 +69,7 @@ public class StoreClerkMainActivity extends AppCompatActivity {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which){
+                switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         StoreClerkMainActivity.super.onBackPressed();
                         break;
@@ -69,6 +85,5 @@ public class StoreClerkMainActivity extends AppCompatActivity {
         builder.setMessage("Do you want to exit the app?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
 
-//        super.onBackPressed();
     }
 }

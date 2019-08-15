@@ -6,6 +6,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -130,8 +131,8 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         Command command = new Command(this,"post",endpt,jsonObj);
         new AsyncToServer().execute(command);
 
-        username = null;
-        password = null;
+//        username = null;
+//        password = null;
     }
 
     private void onLoginSuccessful() {
@@ -151,6 +152,12 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
 
         //store roleid = 1,2,3
         else if (roleId <= 3){
+            // save username for later use
+            SharedPreferences pref = getSharedPreferences("UserData", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("username", username);
+            editor.commit();
+
             Intent intent = new Intent(this, StoreClerkMainActivity.class);
             ImageView logo = findViewById(R.id.iv_logo);
             ActivityOptionsCompat options = ActivityOptionsCompat
@@ -160,6 +167,8 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(intent, options.toBundle());
         }
         mShouldFinish = true;
+        username = null;
+        password = null;
     }
 
     private void onLoginUnsuccessful() {

@@ -22,7 +22,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.san.logicuniversity_ad.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
@@ -38,9 +40,13 @@ import java.util.ArrayList;
 
 public class StoreRetrivalListFragment extends Fragment implements AsyncToServer.IServerResponse {
 
-    private final String GET_RETRIVAL_LIST_URL = BuildConfig.API_BASE_URL + "/store/retrivalList";
+    private final String GET_RETRIVAL_LIST_URL = BuildConfig.API_BASE_URL + "/api/retrivalList";
+    private final String POST_RETRIVAL_LIST_URL = BuildConfig.API_BASE_URL + "/api/RetrivalListSubmit";
 
     RecyclerView rvRetrival;
+    FloatingActionButton btnSubmit;
+
+    RetrivalItemAdaptor retrivalItemAdaptor;
 
 
     public StoreRetrivalListFragment() {
@@ -78,11 +84,39 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         rvRetrival.setLayoutManager(layoutManager);
 
+        btnSubmit = view.findViewById(R.id.btn_submit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submitRetrivalList();
+            }
+        });
+
         requestRetrivalItemList();
     }
 
-    private void requestRetrivalItemList() {
+    public void requestRetrivalItemList() {
         Command cmd = new Command(this, "getRetrivalList", GET_RETRIVAL_LIST_URL, null);
+        new AsyncToServer().execute(cmd);
+    }
+
+    private void submitRetrivalList() {
+        JSONObject obj = new JSONObject();
+        try {
+
+            JSONArray jsonRIs = new JSONArray();
+            for (RetrivalItem ri: retrivalItemAdaptor.getRetrivalItemList()) {
+                JSONObject jsonDi = new JSONObject();
+                jsonDi.put("productId", ri.getItemNumber());
+                jsonDi.put("quantityNeeded", ri.getQtyNeeded());
+                jsonDi.put("quantityRetrieved", ri.getQtyRetrieved());
+                jsonRIs.put(jsonDi);
+            }
+            obj.put("retrievalForms", jsonRIs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Command cmd = new Command(this, "postRetrivalList", POST_RETRIVAL_LIST_URL, obj);
         new AsyncToServer().execute(cmd);
     }
 
@@ -96,6 +130,8 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
 
             if (context.compareTo("getRetrivalList") == 0) {
                 onGetRetrivalList(jsonObj);
+            } else if (context.compareTo("postRetrivalList") == 0) {
+                onAfterPostRetrivalList(jsonObj);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,14 +157,28 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
                 retrivalItemArrayList.add(ri);
             }
 
-            RetrivalItemAdaptor ra = new RetrivalItemAdaptor(retrivalItemArrayList);
-            rvRetrival.setAdapter(ra);
+            retrivalItemAdaptor = new RetrivalItemAdaptor(retrivalItemArrayList);
+            rvRetrival.setAdapter(retrivalItemAdaptor);
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private void onAfterPostRetrivalList(JSONObject jsonObject) {
+        try {
+            String status = jsonObject.getString("status");
+            if(status.equals("ok")) {
+                Toast.makeText(getContext(), "Successfully submitted the data!", Toast.LENGTH_SHORT).show();
+                requestRetrivalItemList();
+            }
+
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

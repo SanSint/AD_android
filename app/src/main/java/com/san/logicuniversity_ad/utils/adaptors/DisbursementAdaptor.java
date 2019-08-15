@@ -1,11 +1,9 @@
 package com.san.logicuniversity_ad.utils.adaptors;
 
-import android.content.Context;
-import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.Disbursement;
-import com.san.logicuniversity_ad.ui.store.Store_ViewDisbursementList;
 
 import java.util.List;
 
@@ -41,8 +38,10 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
     public void onBindViewHolder(@NonNull DisbursementViewHolder holder, int position) {
         Disbursement d = disbursementList.get(position);
         holder.tvDisbursementId.setText(d.getDisbursementId() + "");
-        holder.tvDoneBy.setText(d.getDoneBy());
+        holder.tvDoneBy.setText(d.getDoneBy().toLowerCase() != "null" ? d.getDoneBy() : "");
         holder.tvDepartment.setText(d.getDepartment());
+        holder.tvStatus.setText(d.getStatus());
+        Log.i("DEBUG", d.getDoneBy());
     }
 
     @Override
@@ -52,7 +51,7 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
 
 
     public interface ViewClickListener {
-        void onClickViewDetails(int disbursementId);
+        void onClickViewDetails(int disbursementId, boolean isEditable);
     }
 
 
@@ -60,7 +59,7 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
         protected TextView tvDisbursementId;
         protected TextView tvDoneBy;
         protected TextView tvDepartment;
-        protected Button btnView;
+        protected TextView tvStatus;
         protected CardView cvDisbursementCard;
 
         public DisbursementViewHolder(View v) {
@@ -69,22 +68,16 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
             tvDisbursementId = v.findViewById(R.id.tv_disbursement_id);
             tvDoneBy = v.findViewById(R.id.tv_done_by);
             tvDepartment = v.findViewById(R.id.tv_department);
-            btnView = v.findViewById(R.id.btn_view);
+            tvStatus = v.findViewById(R.id.tv_status);
             cvDisbursementCard = v.findViewById(R.id.disbursement_card);
 
-            btnView.setOnClickListener(new View.OnClickListener() {
+            cvDisbursementCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    Intent i = new Intent(view.getContext(), Store_ViewDisbursementList.class);
-//                    i.putExtra("disbursementId", tvDisbursementId.getText());
-//                    context.startActivity(i);
+                    String status = tvStatus.getText().toString();
+                    boolean isEditable = status.equals("PENDING DELIVERY");
 
-//                    view.setVisibility(View.GONE);
-//                    ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
-//                            .replace(R.id.fragment_frame, new StoreDisbursementDetailsFragment())
-//                            .commit();
-
-                    mListener.onClickViewDetails(Integer.parseInt(tvDisbursementId.getText().toString()));
+                    mListener.onClickViewDetails(Integer.parseInt(tvDisbursementId.getText().toString()), isEditable);
 
                 }
             });

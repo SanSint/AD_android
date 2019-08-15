@@ -1,6 +1,7 @@
 package com.san.logicuniversity_ad.ui.store.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,12 +12,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.san.logicuniversity_ad.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
@@ -34,25 +38,31 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
 
     private OnFragmentInteractionListener mListener;
     private int disbursementId;
+    private boolean isEditable;
+    private DisbursementItemAdaptor disbursementItemAdaptor;
 
     private static final String DISBURSEMENT_ID = "disbursementId";
+    private static final String IS_EDITABLE = "isEditable";
     private final String GET_DISBURSEMENT_URL = BuildConfig.API_BASE_URL + "/api/DisbursementDetails";
+    private final String POST_DISBURSEMENT_URL = BuildConfig.API_BASE_URL + "/api/DisbursementUpdate";
 
     RecyclerView rvDisbursementItem;
     TextView tvDepartment;
     TextView tvCollectionPoint;
     TextView tvDeptRep;
     ImageButton btnBack;
+    FloatingActionButton btnSubmit;
 
     public StoreDisbursementDetailsFragment() {
         // Required empty public constructor
     }
 
 
-    public static StoreDisbursementDetailsFragment newInstance(int disbursementId) {
+    public static StoreDisbursementDetailsFragment newInstance(int disbursementId, boolean isEditable) {
         StoreDisbursementDetailsFragment fragment = new StoreDisbursementDetailsFragment();
         Bundle args = new Bundle();
         args.putInt(DISBURSEMENT_ID, disbursementId);
+        args.putBoolean(IS_EDITABLE, isEditable);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,6 +72,7 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             disbursementId = getArguments().getInt(DISBURSEMENT_ID);
+            isEditable = getArguments().getBoolean(IS_EDITABLE);
         }
     }
 
@@ -91,11 +102,48 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
             }
         });
 
+        btnSubmit = view.findViewById(R.id.btn_submit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submitDisbursements();
+            }
+        });
+        if(!this.isEditable) {
+            btnSubmit.setEnabled(false);
+        }
+
         requestDisbursement();
     }
 
-    private void requestDisbursement() {
+    public void requestDisbursement() {
         Command cmd = new Command(this, "getDisbursement", GET_DISBURSEMENT_URL + "/" + disbursementId, null);
+        new AsyncToServer().execute(cmd);
+    }
+
+    private void submitDisbursements() {
+        SharedPreferences pref = this.getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String username = pref.getString("username", null);
+
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("userName", username);
+
+            JSONArray jsonDIs = new JSONArray();
+            for (DisbursementItem di: disbursementItemAdaptor.getDisbursementItemList()) {
+                JSONObject jsonDi = new JSONObject();
+                jsonDi.put("DISBURSEMENT_ID", disbursementId);
+                jsonDi.put("PRODUCT_ID", di.getItemNumber());
+                jsonDi.put("QUANTITY_COLLECTED", di.getQtyCollected());
+                jsonDi.put("QUANTITY_ISSUED", di.getQtyIssued());
+                jsonDi.put("REASON", di.getReason());
+                jsonDIs.put(jsonDi);
+            }
+            obj.put("disbursementDetails", jsonDIs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Command cmd = new Command(this, "postDisbursement", POST_DISBURSEMENT_URL, obj);
         new AsyncToServer().execute(cmd);
     }
 
@@ -109,6 +157,8 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
 
             if (context.compareTo("getDisbursement") == 0) {
                 onGetDisbursement(jsonObj);
+            } else if(context.compareTo("postDisbursement") == 0) {
+                onAfterPostDisbursement(jsonObj);
             }
 
         } catch (Exception e) {
@@ -121,7 +171,7 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
             JSONObject disbursement = jsonObj.getJSONObject("result");
             tvDepartment.setText(disbursement.getString("department"));
             tvCollectionPoint.setText(disbursement.getString("collectionPoint"));
-            tvDeptRep.setText(disbursement.getString("deptRepName"));
+            tvDeptRep.setText(disbursement.getString("depRepName"));
 
             ArrayList<DisbursementItem> disItemAL = new ArrayList<>();
             JSONArray diArr = (JSONArray) disbursement.get("itemList");
@@ -133,17 +183,31 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
                         riJson.getString("category"),
                         riJson.getString("description"),
                         riJson.getString("uOfMeasure"),
+                        riJson.getInt("QtyCollected"),
                         riJson.getInt("QtyIssue"),
-                        riJson.getInt("QtyIssue"));
+                        riJson.getString("reason"));
 
                 disItemAL.add(di);
             }
 
-            DisbursementItemAdaptor da = new DisbursementItemAdaptor(disItemAL);
-            rvDisbursementItem.setAdapter(da);
+            disbursementItemAdaptor = new DisbursementItemAdaptor(disItemAL, this.isEditable);
+            rvDisbursementItem.setAdapter(disbursementItemAdaptor);
 
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void onAfterPostDisbursement(JSONObject jsonObject) {
+        try {
+            int numOfAd = jsonObject.getInt("numOfAd");
+            if(numOfAd >= 0) {
+                Toast.makeText(getContext(), "Successfully submitted the data!", Toast.LENGTH_SHORT).show();
+                btnBack.performClick();
+            }
+
+        } catch ( Exception e) {
             e.printStackTrace();
         }
     }

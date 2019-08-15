@@ -6,15 +6,18 @@ public class DisbursementItem {
     private String category;
     private String description;
     private String unitOfMeasure;
+    private int qtyCollected;
     private int qtyIssued;
+    private String reason;
 
-    public DisbursementItem(String itemNumber, String category, String description, String unitOfMeasure, int qtyIssued, int actualQtyIssued) {
+    public DisbursementItem(String itemNumber, String category, String description, String unitOfMeasure, int qtyCollected, int qtyIssued, String reason) {
         this.itemNumber = itemNumber;
         this.category = category;
         this.description = description;
         this.unitOfMeasure = unitOfMeasure;
+        this.qtyCollected = qtyCollected;
         this.qtyIssued = qtyIssued;
-        this.actualQtyIssued = actualQtyIssued;
+        this.reason = reason;
     }
 
     public String getItemNumber() {
@@ -49,22 +52,27 @@ public class DisbursementItem {
         this.unitOfMeasure = unitOfMeasure;
     }
 
+    public int getQtyCollected() {
+        return qtyCollected;
+    }
+
+    public void setQtyCollected(int qtyCollected) {
+        this.qtyCollected = qtyCollected;
+    }
+
     public int getQtyIssued() {
         return qtyIssued;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public void setQtyIssued(int qtyIssued) {
         this.qtyIssued = qtyIssued;
     }
-
-    public int getActualQtyIssued() {
-        return actualQtyIssued;
-    }
-
-    public void setActualQtyIssued(int actualQtyIssued) {
-        this.actualQtyIssued = actualQtyIssued;
-    }
-
-    private int actualQtyIssued;
-
 }

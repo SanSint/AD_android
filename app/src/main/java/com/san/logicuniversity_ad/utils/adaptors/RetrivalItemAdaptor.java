@@ -1,5 +1,7 @@
 package com.san.logicuniversity_ad.utils.adaptors;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +29,28 @@ public class RetrivalItemAdaptor extends RecyclerView.Adapter<RetrivalItemAdapto
     }
 
     @Override
-    public void onBindViewHolder(RetrivalItemViewHolder retrivalItemViewHolder, int i) {
+    public void onBindViewHolder(RetrivalItemViewHolder retrivalItemViewHolder, final int position) {
 
-        RetrivalItem ri = retrivalItemList.get(i);
+        RetrivalItem ri = retrivalItemList.get(position);
         retrivalItemViewHolder.tvItemNumber.setText(ri.getItemNumber());
         retrivalItemViewHolder.tvCategory.setText(ri.getCategory());
         retrivalItemViewHolder.tvDescription.setText(ri.getDescription());
         retrivalItemViewHolder.tvQtyNeeded.setText(ri.getQtyNeeded() + "");
         retrivalItemViewHolder.etQtyRetrieved.setText(ri.getQtyNeeded() + "");
+        retrivalItemViewHolder.etQtyRetrieved.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                retrivalItemList.get(position).setQtyRetrieved(Integer.parseInt(charSequence.toString()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
     }
 
     @Override
@@ -62,5 +77,9 @@ public class RetrivalItemAdaptor extends RecyclerView.Adapter<RetrivalItemAdapto
             etQtyRetrieved = v.findViewById(R.id.et_qty_retrieved);
             tvDescription = v.findViewById(R.id.tv_desc);
         }
+    }
+
+    public List<RetrivalItem> getRetrivalItemList() {
+        return retrivalItemList;
     }
 }

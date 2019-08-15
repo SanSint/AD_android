@@ -108,6 +108,21 @@
                 android:layout_height="match_parent"
                 android:background="#0FFFFFFF">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_submit"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="132dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_check_bold_big"
+                    android:tint="#FFFFFF"
+                    app:fabCustomSize="80dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
