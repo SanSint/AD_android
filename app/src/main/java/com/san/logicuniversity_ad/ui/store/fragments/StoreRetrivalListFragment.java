@@ -148,11 +148,11 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
             for (int i = 0, count = riArr.length(); i < count; i++) {
                 JSONObject riJson = riArr.getJSONObject(i);
                 RetrivalItem ri = new RetrivalItem(
-                        riJson.getString("productId"),
+                        riJson.getString("itemCode"),
                         riJson.getString("category"),
-                        riJson.getString("description"),
-                        riJson.getInt("quantityNeeded"),
-                        riJson.getInt("quantityNeeded"));
+                        riJson.getString("desc"),
+                        riJson.getInt("qtyNeeded"),
+                        riJson.getInt("qtyNeeded"));
 
                 retrivalItemArrayList.add(ri);
             }
