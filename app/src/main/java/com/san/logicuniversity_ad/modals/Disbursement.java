@@ -2,15 +2,26 @@ package com.san.logicuniversity_ad.modals;
 
 public class Disbursement {
     private int disbursementId;
-    private String department;
+    private String collectionPoint;
     private String doneBy;
     private String status;
+    private String departmentName;
 
-    public Disbursement(int disbursementId, String department, String doneBy, String status) {
+    public Disbursement(int disbursementId, String collectionPoint, String doneBy, String status, String departmentName) {
         this.disbursementId = disbursementId;
-        this.department = department;
+        this.collectionPoint = collectionPoint;
         this.doneBy = doneBy;
         this.status = status;
+        this.departmentName = departmentName;
+    }
+
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     public int getDisbursementId() {
@@ -21,12 +32,12 @@ public class Disbursement {
         this.disbursementId = disbursementId;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getCollectionPoint() {
+        return collectionPoint;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setCollectionPoint(String collectionPoint) {
+        this.collectionPoint = collectionPoint;
     }
 
     public String getDoneBy() {

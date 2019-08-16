@@ -51,42 +51,47 @@
                 android:textAllCaps="true"
                 android:textColor="#888888"
                 android:textSize="18sp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_department"
+                android:id="@+id/tv_disbursement_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-light"
+                android:text="jordan"
+                android:textAllCaps="true"
+                android:textColor="#888888"
+                android:textSize="18sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status" />
+
+            <TextView
+                android:id="@+id/tv_collection_point"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
                 android:fontFamily="serif"
                 android:text="Registrar"
                 android:textAllCaps="false"
                 android:textColor="#888888"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv"
-                app:layout_constraintTop_toBottomOf="@+id/tv" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_department_name" />
 
             <TextView
-                android:id="@+id/tv_disbursement_id"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="D001"
-                android:textColor="@color/colorPrimaryStore"
-                android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/tv"
-                app:layout_constraintTop_toTopOf="@+id/tv" />
-
-            <TextView
-                android:id="@+id/tv"
+                android:id="@+id/tv_department_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="No:"
+                android:layout_marginTop="16dp"
+                android:text="D001"
                 android:textColor="@color/colorPrimaryStore"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"

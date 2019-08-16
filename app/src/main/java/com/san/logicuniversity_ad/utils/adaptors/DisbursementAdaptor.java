@@ -37,9 +37,15 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
     @Override
     public void onBindViewHolder(@NonNull DisbursementViewHolder holder, int position) {
         Disbursement d = disbursementList.get(position);
-        holder.tvDisbursementId.setText(d.getDisbursementId() + "");
+        //Disbursement ID
+        holder.tvDisbursementId.setText(String.format("%d", d.getDisbursementId()));
+        //Name of requestingDepartment
+        holder.tvDepartmentName.setText(d.getDepartmentName() + " department");
+        //Name of store employee who did the delivery
         holder.tvDoneBy.setText(d.getDoneBy().toLowerCase() != "null" ? d.getDoneBy() : "");
-        holder.tvDepartment.setText(d.getDepartment());
+        //Collection Point
+        holder.tvCollectionPoint.setText(d.getCollectionPoint());
+        //status of Disbursement
         holder.tvStatus.setText(d.getStatus());
         Log.i("DEBUG", d.getDoneBy());
     }
@@ -58,16 +64,18 @@ public class DisbursementAdaptor extends RecyclerView.Adapter<DisbursementAdapto
     public class DisbursementViewHolder extends RecyclerView.ViewHolder {
         protected TextView tvDisbursementId;
         protected TextView tvDoneBy;
-        protected TextView tvDepartment;
+        protected TextView tvCollectionPoint;
         protected TextView tvStatus;
+        protected TextView tvDepartmentName;
         protected CardView cvDisbursementCard;
 
         public DisbursementViewHolder(View v) {
             super(v);
 
             tvDisbursementId = v.findViewById(R.id.tv_disbursement_id);
+            tvDepartmentName = v.findViewById(R.id.tv_department_name);
             tvDoneBy = v.findViewById(R.id.tv_done_by);
-            tvDepartment = v.findViewById(R.id.tv_department);
+            tvCollectionPoint = v.findViewById(R.id.tv_collection_point);
             tvStatus = v.findViewById(R.id.tv_status);
             cvDisbursementCard = v.findViewById(R.id.disbursement_card);
 

@@ -2,7 +2,6 @@ package com.san.logicuniversity_ad.ui.store.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,16 +9,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.san.logicuniversity_ad.AsyncToServer;
@@ -92,7 +88,7 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         rvDisbursementItem.setLayoutManager(layoutManager);
 
-        tvDepartment = view.findViewById(R.id.tv_department);
+        tvDepartment = view.findViewById(R.id.tv_collection_point);
         tvCollectionPoint = view.findViewById(R.id.tv_collections);
         tvDeptRep = view.findViewById(R.id.tv_dep_rep);
         btnBack = view.findViewById(R.id.btn_back);

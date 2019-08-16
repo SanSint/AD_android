@@ -119,7 +119,8 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
                         riJson.getInt("disbursementId"),
                         riJson.getString("collectionPoint"),
                         riJson.getString("deliveredBy"),
-                        riJson.getString("status"));
+                        riJson.getString("status"),
+                        riJson.getString("requestorDepartment"));
 
                 disbursementArrayList.add(d);
             }
