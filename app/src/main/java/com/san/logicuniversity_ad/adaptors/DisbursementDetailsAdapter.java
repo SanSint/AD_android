@@ -41,7 +41,7 @@ public class DisbursementDetailsAdapter extends ArrayAdapter<DisbursementItem> {
         // Populate the data into the template view using the data object
         tvDescription.setText(item.getDescription());
         tvUnitOfMeasure.setText(item.getUnitOfMeasure());
-        tvQuantityIssued.setText(String.format("%d", item.getActualQtyIssued()));
+        tvQuantityIssued.setText(String.format("%d", item.getQtyCollected()));
 
         // Return the completed view to render on screen
         return convertView;

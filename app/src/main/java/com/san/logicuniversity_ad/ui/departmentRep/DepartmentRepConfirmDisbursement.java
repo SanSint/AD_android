@@ -120,7 +120,7 @@ public class DepartmentRepConfirmDisbursement extends AppCompatActivity implemen
 
                         DisbursementItem item = new DisbursementItem();
                         item.setDescription(description);
-                        item.setActualQtyIssued(quantity);
+                        item.setQtyIssued(quantity);
                         item.setUnitOfMeasure(unitOfMeasure);
 
                         disbDetailsList.add(item);

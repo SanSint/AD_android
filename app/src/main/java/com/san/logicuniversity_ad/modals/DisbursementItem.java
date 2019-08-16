@@ -10,6 +10,9 @@ public class DisbursementItem {
     private int qtyIssued;
     private String reason;
 
+    public DisbursementItem() {
+    }
+
     public DisbursementItem(String itemNumber, String category, String description, String unitOfMeasure, int qtyCollected, int qtyIssued, String reason) {
         this.itemNumber = itemNumber;
         this.category = category;
