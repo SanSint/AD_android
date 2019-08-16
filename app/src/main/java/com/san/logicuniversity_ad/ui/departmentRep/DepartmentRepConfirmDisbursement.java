@@ -139,6 +139,10 @@ public class DepartmentRepConfirmDisbursement extends AppCompatActivity implemen
     }
 
     @Override
+    public void onServerFailed() {
+    }
+
+    @Override
     public void onClick(View view) {
         JSONObject jsonObj = new JSONObject();
         String endpt = "http://10.0.2.2:44361/api/requestUpdate";

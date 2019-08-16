@@ -18,9 +18,13 @@
 
 
         <!--<activity android:name=".DepartmentHeadMain" />-->
-
-
-
+        <activity android:name=".ui.departmentHead.DepartmentHeadMain" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadRequests" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadRequestDecision" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadAppointRep" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadDelegateHead" />
+        <activity android:name=".ui.departmentRep.DepartmentRepConfirmDisbursement" />
+        <activity android:name=".ui.departmentRep.DepartmentRepMain" />
 
         <!--Store Activities-->
 

@@ -34,7 +34,7 @@
         app:tabIndicatorColor="#FFFFFF"
         app:tabIndicatorGravity="stretch"
         app:tabMaxWidth="0dp"
-        app:tabRippleColor="@color/colorAccent"
+        app:tabRippleColor="@color/colorSecondaryAccentStore"
         app:tabSelectedTextColor="#FFFFFF"
         app:tabTextColor="#B3FFFFFF">
 

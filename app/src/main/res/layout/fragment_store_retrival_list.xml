@@ -24,7 +24,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#EEEEEE">
 
                 <TextView
                     android:id="@+id/tv_func_desc"
@@ -43,6 +44,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tv_no_retrieval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Nothing to retrieve at the moment!"
+                    android:textColor="#333333"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_func_desc"
+                    app:layout_constraintVertical_bias="0.25" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/retrieval_rv"
                     android:layout_width="0dp"
@@ -51,10 +69,13 @@
                     android:clipToPadding="false"
                     android:paddingHorizontal="8dp"
                     android:paddingBottom="100dp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_func_desc" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_func_desc">
+
+                </androidx.recyclerview.widget.RecyclerView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

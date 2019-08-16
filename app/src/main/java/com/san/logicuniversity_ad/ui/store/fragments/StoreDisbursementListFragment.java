@@ -103,6 +103,11 @@ public class StoreDisbursementListFragment extends Fragment implements AsyncToSe
         }
     }
 
+    @Override
+    public void onServerFailed() {
+
+    }
+
     private void onGetDisbursementList(JSONObject jsonObj) {
         try {
             ArrayList<Disbursement> disbursementArrayList= new ArrayList<>();

@@ -1,5 +1,6 @@
 package com.san.logicuniversity_ad;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
@@ -88,6 +89,8 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
                     onLoginSuccessful();
                 } else if (loginResult == LoginResult.UNSUCCESSFUL) {
                     onLoginUnsuccessful();
+                } else if (loginResult == LoginResult.SERVERFAILED) {
+                    onLoginServerFailed();
                 }
             }
 
@@ -176,6 +179,17 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         Toast.makeText(this, "Wrong username or password", Toast.LENGTH_SHORT).show();
     }
 
+    private void onLoginServerFailed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Sorry!  There was something wrong with our servers. Please try again later...")
+                .setTitle("Server Problem");
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        loginResult = loginResult.LOADING;
+        btnLogin.setEnabled(true);
+    }
+
     @Override
     public void onServerResponse(JSONObject jsonObj) {
         if (jsonObj == null)
@@ -217,6 +231,11 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    public void onServerFailed() {
+        loginResult = LoginResult.SERVERFAILED;
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         if(mShouldFinish)
@@ -224,6 +243,6 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     enum LoginResult {
-        LOADING, SUCCESSFUL, UNSUCCESSFUL
+        LOADING, SUCCESSFUL, UNSUCCESSFUL, SERVERFAILED
     }
 }

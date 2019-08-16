@@ -49,9 +49,11 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
                 jsonObj.put("context", cmd.context);
             } catch (Exception e) {
                 e.printStackTrace();
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
 
         return jsonObj;
@@ -60,9 +62,12 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
     protected void onPostExecute(JSONObject jsonObj) {
         if (jsonObj != null)
             this.callback.onServerResponse(jsonObj);
+        else
+            this.callback.onServerFailed();
     }
 
     public interface IServerResponse {
         void onServerResponse(JSONObject jsonObj);
+        void onServerFailed();
     }
 }

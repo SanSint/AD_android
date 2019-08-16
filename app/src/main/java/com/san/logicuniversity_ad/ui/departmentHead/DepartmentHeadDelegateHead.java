@@ -161,6 +161,11 @@ public class DepartmentHeadDelegateHead extends AppCompatActivity implements Asy
     }
 
     @Override
+    public void onServerFailed() {
+
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         Bundle bundle = new Bundle();

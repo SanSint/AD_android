@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -166,6 +167,11 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
         }
     }
 
+    @Override
+    public void onServerFailed() {
+
+    }
+
     private void onGetDisbursement(JSONObject jsonObj) {
         try {
             JSONObject disbursement = jsonObj.getJSONObject("result");
@@ -203,8 +209,14 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
         try {
             int numOfAd = jsonObject.getInt("numOfAd");
             if(numOfAd >= 0) {
-                Toast.makeText(getContext(), "Successfully submitted the data!", Toast.LENGTH_SHORT).show();
                 btnBack.performClick();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                builder.setMessage("The disbursement has been successfully delivered!")
+                        .setTitle("Disbursement Successful!");
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
 
         } catch ( Exception e) {

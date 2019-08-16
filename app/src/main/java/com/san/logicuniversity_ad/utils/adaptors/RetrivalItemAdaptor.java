@@ -1,6 +1,7 @@
 package com.san.logicuniversity_ad.utils.adaptors;
 
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.RetrivalItem;
+import com.san.logicuniversity_ad.utils.InputMinMaxFilter;
 
 import java.util.List;
 
@@ -44,13 +46,18 @@ public class RetrivalItemAdaptor extends RecyclerView.Adapter<RetrivalItemAdapto
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                retrivalItemList.get(position).setQtyRetrieved(Integer.parseInt(charSequence.toString()));
+                if(charSequence.length() > 0) {
+                    retrivalItemList.get(position).setQtyRetrieved(Integer.parseInt(charSequence.toString()));
+                } else {
+                    retrivalItemList.get(position).setQtyRetrieved(0);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
             }
         });
+        retrivalItemViewHolder.etQtyRetrieved.setFilters(new InputFilter[]{new InputMinMaxFilter(0, ri.getQtyNeeded())});
     }
 
     @Override

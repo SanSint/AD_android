@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.san.logicuniversity_ad.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
@@ -45,6 +47,8 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
 
     RecyclerView rvRetrival;
     FloatingActionButton btnSubmit;
+    TextView tvNoRetrieval;
+    Snackbar loadingSnackbar;
 
     RetrivalItemAdaptor retrivalItemAdaptor;
 
@@ -92,15 +96,25 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
             }
         });
 
+        tvNoRetrieval = view.findViewById(R.id.tv_no_retrieval);
+        loadingSnackbar = Snackbar.make(getView(), "", Snackbar.LENGTH_INDEFINITE);
+
         requestRetrivalItemList();
     }
 
     public void requestRetrivalItemList() {
+        btnSubmit.setEnabled(false);
+        loadingSnackbar.setText("Loading retrieval list. Please wait a moment...");
+        loadingSnackbar.show();
         Command cmd = new Command(this, "getRetrivalList", GET_RETRIVAL_LIST_URL, null);
         new AsyncToServer().execute(cmd);
     }
 
     private void submitRetrivalList() {
+        btnSubmit.setEnabled(false);
+        loadingSnackbar.setText("Submitting retrieval list. Please wait a moment...");
+        loadingSnackbar.show();
+
         JSONObject obj = new JSONObject();
         try {
 
@@ -140,6 +154,19 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
 
     }
 
+    @Override
+    public void onServerFailed() {
+        loadingSnackbar.dismiss();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setMessage("Sorry! There was something wrong with our servers. Please try again later...")
+                .setTitle("Server Problem");
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        btnSubmit.setEnabled(true);
+    }
+
     private void onGetRetrivalList(JSONObject jsonObj) {
         try {
             ArrayList<RetrivalItem> retrivalItemArrayList = new ArrayList<>();
@@ -156,10 +183,20 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
 
                 retrivalItemArrayList.add(ri);
             }
-
             retrivalItemAdaptor = new RetrivalItemAdaptor(retrivalItemArrayList);
             rvRetrival.setAdapter(retrivalItemAdaptor);
 
+            if(retrivalItemArrayList.size() > 0) {
+                rvRetrival.setVisibility(View.VISIBLE);
+                tvNoRetrieval.setVisibility(View.GONE);
+                btnSubmit.setEnabled(true);
+            } else {
+                rvRetrival.setVisibility(View.GONE);
+                tvNoRetrieval.setVisibility(View.VISIBLE);
+                btnSubmit.setEnabled(false);
+            }
+
+            loadingSnackbar.dismiss();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -169,16 +206,24 @@ public class StoreRetrivalListFragment extends Fragment implements AsyncToServer
     private void onAfterPostRetrivalList(JSONObject jsonObject) {
         try {
             String status = jsonObject.getString("status");
-            if(status.equals("ok")) {
-                Toast.makeText(getContext(), "Successfully submitted the data!", Toast.LENGTH_SHORT).show();
+            if (status.equals("ok")) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                builder.setMessage("Yay! You have retrieved all the items successfully!")
+                        .setTitle("Retrieval Successful!");
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
                 requestRetrivalItemList();
             }
 
-        } catch ( Exception e) {
+            loadingSnackbar.dismiss();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 
 }

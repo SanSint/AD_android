@@ -103,4 +103,9 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onServerFailed() {
+
+    }
 }

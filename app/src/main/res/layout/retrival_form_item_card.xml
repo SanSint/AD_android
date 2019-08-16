@@ -18,10 +18,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="sans-serif-light"
             android:text="S100"
-            android:textColor="@color/colorPrimaryStore"
-            android:textSize="24sp"
+            android:textAllCaps="true"
+            android:textColor="#888888"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView15"
             app:layout_constraintStart_toEndOf="@+id/textView15"
             app:layout_constraintTop_toTopOf="@+id/textView15" />
@@ -46,10 +47,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="sans-serif-light"
             android:text="No."
-            android:textColor="@color/colorPrimaryStore"
-            android:textSize="24sp"
+            android:textAllCaps="true"
+            android:textColor="#888888"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,10 +60,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="sans-serif"
             android:text="Sctoch Tape Dispensor"
-            android:textColor="#555555"
-            android:textSize="18sp"
+            android:textColor="@color/colorPrimaryStore"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/textView15"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_number" />
 
