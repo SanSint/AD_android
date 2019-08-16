@@ -191,7 +191,7 @@ public class StoreDisbursementDetailsFragment extends Fragment implements AsyncT
                         riJson.getString("uOfMeasure"),
                         riJson.getInt("QtyCollected"),
                         riJson.getInt("QtyIssue"),
-                        riJson.getString("reason"));
+                        !riJson.getString("reason").toLowerCase().equals("null") ? riJson.getString("reason") : "");
 
                 disItemAL.add(di);
             }

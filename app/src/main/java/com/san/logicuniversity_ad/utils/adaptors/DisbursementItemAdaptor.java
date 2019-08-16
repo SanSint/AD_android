@@ -1,6 +1,7 @@
 package com.san.logicuniversity_ad.utils.adaptors;
 
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.DisbursementItem;
+import com.san.logicuniversity_ad.utils.InputMinMaxFilter;
 
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class DisbursementItemAdaptor extends  RecyclerView.Adapter<DisbursementI
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DisbursementItemViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final DisbursementItemViewHolder holder, final int position) {
         DisbursementItem di = disbursementItemList.get(position);
 
         holder.tvItemNumber.setText(di.getItemNumber());
@@ -52,7 +54,17 @@ public class DisbursementItemAdaptor extends  RecyclerView.Adapter<DisbursementI
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(charSequence.length() > 0) {
-                    disbursementItemList.get(position).setQtyIssued(Integer.parseInt(charSequence.toString()));
+                    int qty = Integer.parseInt(charSequence.toString());
+                    disbursementItemList.get(position).setQtyIssued(qty);
+
+                    int collectedQty = Integer.parseInt(holder.tvQtyIssued.getText().toString());
+                    if (isEditable && qty < collectedQty) {
+                        holder.etReason.setEnabled(true);
+                    } else {
+                        holder.etReason.setEnabled(false);
+                        holder.etReason.setText("");
+                        disbursementItemList.get(position).setReason("");
+                    }
                 }
             }
 
@@ -60,6 +72,7 @@ public class DisbursementItemAdaptor extends  RecyclerView.Adapter<DisbursementI
             public void afterTextChanged(Editable editable) {
             }
         });
+        holder.etActualQtyIssued.setFilters(new InputFilter[]{new InputMinMaxFilter(0, di.getQtyCollected())});
 
         holder.etReason.setText(di.getReason());
         holder.etReason.addTextChangedListener(new TextWatcher() {
@@ -79,6 +92,10 @@ public class DisbursementItemAdaptor extends  RecyclerView.Adapter<DisbursementI
 
         if(!isEditable) {
             holder.etActualQtyIssued.setEnabled(false);
+            holder.etReason.setEnabled(false);
+        }
+
+        if(di.getQtyCollected() == di.getQtyIssued()) {
             holder.etReason.setEnabled(false);
         }
     }
