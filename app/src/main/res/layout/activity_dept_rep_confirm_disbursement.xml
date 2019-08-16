@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryStore">
+
+    <ImageView
+        android:id="@+id/imageView_dept_rep_ack_pending_disburse"
+        android:layout_width="89dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:transitionName="transition_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logic_logo" />
+
+    <TextView
+        android:id="@+id/tv_dept_rep_disb_header"
+        android:layout_width="0dp"
+        android:layout_height="79dp"
+        android:gravity="center"
+        android:text="@string/ack_disbursement_header"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/imageView_dept_rep_ack_pending_disburse"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.6" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.85"
+        app:layout_constraintHorizontal_bias="0.0"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_dept_rep_disb_header"
+        app:layout_constraintVertical_bias="0.266"
+        app:layout_constraintWidth_percent="0.9">
+
+    <TextView
+        android:id="@+id/dept_rep_disb_id"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="10sp"
+        android:visibility="invisible"
+        android:text="@string/default_ack_status"
+        android:textColor="@color/colorPrimaryDarkStore"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/swipe_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:padding="10sp"
+        android:text="@string/swipe_instructions"
+        android:visibility="invisible"
+        android:textColor="@color/colorPrimaryDarkStore"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dept_rep_disb_id" />
+
+    <LinearLayout
+        android:id="@+id/list_disb_header"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@color/colorPrimaryStore"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+
+        app:layout_constraintWidth_percent="0.90"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/swipe_instructions"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/requests_id_column"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="Description"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="#000" />
+
+        <TextView
+            android:id="@+id/requestor_column"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:text="Unit of Measure"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="#000" />
+
+        <TextView
+            android:id="@+id/date_column"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:text="Actual Qty Issued"
+            android:textColor="#FFF" />
+    </LinearLayout>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/swipe_container"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_disb_header"
+        app:layout_constraintWidth_percent="0.90">
+
+        <ListView
+            android:id="@+id/dept_rep_disb_details"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintWidth_percent="0.90">
+
+        </ListView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <Button
+        android:id="@+id/acknowledge_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#b9f6ca"
+        android:text="@string/acknowledge"
+        android:textColor="#FFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/swipe_container"
+        app:layout_constraintWidth_percent="0.6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.san.logicuniversity_ad.ui.departmentHead;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.adaptors.PendingRequestDetailsAdapter;
@@ -33,6 +35,7 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
     private int currentDeptID;
     private Button approveButton;
     private Button rejectButton;
+    private String decision;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,8 +48,10 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
         tvTotalCost = findViewById(R.id.pending_requests_total_cost);
         approveButton = findViewById(R.id.approve_pending_button);
         approveButton.setOnClickListener(this);
+        approveButton.setBackgroundColor(Color.parseColor("#c8e6c9"));
         rejectButton = findViewById(R.id.reject_pending_button);
         rejectButton.setOnClickListener(this);
+        rejectButton.setBackgroundColor(Color.parseColor("#ff7961"));
 
         Bundle bundle = getIntent().getExtras();
         selectedRequestID = bundle.getInt("selectedRequestID");
@@ -56,7 +61,7 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
 
         tvRequestID.setText(String.format("%d", selectedRequestID));
 
-
+        decision = "";
     }
 
     @Override
@@ -64,11 +69,8 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
         super.onStart();
         //async task to get all requests
         String endpt
-                = "http://10.0.2.2:44361/api/getrequestdetails/" + String.format("%d",selectedRequestID);
-        //endpt for using actual phone to debug
-//        String endpt
-//                = "http://192.168.1.116:45455/api/getrequestdetails/" + String.format("%d",selectedRequestID);
-        Command cmd = new Command(this, "get", endpt, null);
+                = BuildConfig.API_BASE_URL + "/api/getrequestdetails/" + String.format("%d",selectedRequestID);
+           Command cmd = new Command(this, "get", endpt, null);
         new AsyncToServer().execute(cmd);
     }
 
@@ -122,6 +124,8 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
                 bundle.putInt("currentUserID",currentUserID);
                 bundle.putInt("currentRoleID", currentRoleID);
                 bundle.putInt("currentDeptID", currentDeptID);
+                bundle.putString("confirmedStatus", decision);
+                bundle.putInt("confirmedRequestID", selectedRequestID);
 
                 Intent intent = new Intent(getApplicationContext(), DepartmentHeadRequests.class);
                 intent.putExtras(bundle);
@@ -145,13 +149,14 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
     @Override
     public void onClick(View view) {
         JSONObject jsonObj = new JSONObject();
-        String endpt = "http://10.0.2.2:44361/api/requestUpdate";
+        String endpt = BuildConfig.API_BASE_URL + "/api/requestUpdate";
         Command command;
         switch (view.getId()){
             case R.id.approve_pending_button:
+                decision = "APPROVED";
                 try {
                     jsonObj.put("ID", selectedRequestID);
-                    jsonObj.put("STATUS", "APPROVED");
+                    jsonObj.put("STATUS", decision);
                     jsonObj.put("APPROVED_BY", currentUserID);
                 }
                 catch (Exception e) {
@@ -162,9 +167,10 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
 
                 break;
             case R.id.reject_pending_button:
+                decision = "REJECTED";
                 try {
                     jsonObj.put("ID", selectedRequestID);
-                    jsonObj.put("STATUS", "REJECTED");
+                    jsonObj.put("STATUS", decision);
                     jsonObj.put("APPROVED_BY", currentUserID);
                 }
                 catch (Exception e) {

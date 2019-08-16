@@ -37,6 +37,28 @@
         <item name="android:windowContentTransitions">true</item>
     </style>
 
+    <!--Dept Theme-->
+    <style name="DeptAppTheme.NoActionBar" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/colorPrimaryStore</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkStore</item>
+        <item name="colorAccent">@color/colorAccentStore</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="DeptTestAppTheme.NoActionBar" parent="Theme.Design.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryStore</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkStore</item>
+        <item name="colorAccent">@color/colorAccentStore</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowContentTransitions">true</item>
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -44,6 +66,7 @@
     <style name="HintText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@android:color/white</item>
     </style>
+
 
 
 

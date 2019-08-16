@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.san.logicuniversity_ad.LoginActivity;
 import com.san.logicuniversity_ad.R;
 
 public class DepartmentRepMain extends AppCompatActivity implements View.OnClickListener {
@@ -30,6 +32,13 @@ public class DepartmentRepMain extends AppCompatActivity implements View.OnClick
         currentRoleID = bundle.getInt("currentRoleID");
         currentDeptID = bundle.getInt("currentDeptID");
 
+        if (bundle.getString("acknowledged") != null){
+
+            Toast.makeText(this,
+                    "Successfully acknowledged disbursement. ", Toast.LENGTH_LONG)
+                    .show();
+        }
+
     }
 
     @Override
@@ -44,11 +53,19 @@ public class DepartmentRepMain extends AppCompatActivity implements View.OnClick
                 bundle.putInt("currentRoleID", currentRoleID);
                 bundle.putInt("currentDeptID", currentDeptID);
 
-//                intent = new Intent(this, DepartmentHeadRequests.class);
-//                intent.putExtras(bundle);
-//                startActivity(intent);
+                intent = new Intent(this, DepartmentRepConfirmDisbursement.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 break;
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

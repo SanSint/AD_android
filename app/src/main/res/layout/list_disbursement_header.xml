@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:background="#fff1ff"
+    android:orientation="horizontal">
+
+    <!--<TextView-->
+        <!--android:id="@+id/requests_id_column"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:text="Description"-->
+        <!--android:textColor="#000" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="0.01"-->
+        <!--android:background="#000" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/requestor_column"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="0.8"-->
+        <!--android:gravity="center"-->
+        <!--android:text="Unit of Measure"-->
+        <!--android:textColor="#000" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="0.01"-->
+        <!--android:background="#000" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/date_column"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="0.8"-->
+        <!--android:gravity="center"-->
+        <!--android:text="Actual Qty Issued"-->
+        <!--android:textColor="#000" />-->
+</LinearLayout>

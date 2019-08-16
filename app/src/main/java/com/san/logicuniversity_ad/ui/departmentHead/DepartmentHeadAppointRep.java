@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.Employee;
@@ -72,7 +73,7 @@ public class DepartmentHeadAppointRep extends AppCompatActivity implements Async
     protected void onStart() {
         super.onStart();
         //async task to get all employees
-        String endpt = "http://10.0.2.2:44361/api/getemployees/" + String.format("%d",currentDeptID);
+        String endpt = BuildConfig.API_BASE_URL+ "/api/getemployees/" + String.format("%d",currentDeptID);
         Command cmd = new Command(this, "get", endpt, null);
         new AsyncToServer().execute(cmd);
     }
@@ -174,7 +175,7 @@ public class DepartmentHeadAppointRep extends AppCompatActivity implements Async
             catch (Exception e) {
                 e.printStackTrace();
             }
-            String endpt = "http://10.0.2.2:44361/api/updateRep/";
+            String endpt = BuildConfig.API_BASE_URL + "/api/updateRep/";
             Command cmd = new Command(this, "appoint", endpt, jsonObj);
             new AsyncToServer().execute(cmd);
 

@@ -2,66 +2,98 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryStore">
+
+    <ImageView
+        android:id="@+id/imageView_dept_head_pending_request_header"
+        android:layout_width="89dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:transitionName="transition_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logic_logo" />
 
     <TextView
-        android:id="@+id/pending_requests_header"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#e1bee7"
-        android:gravity="center_vertical"
-        android:padding="15sp"
+        android:id="@+id/tv_dept_head_pending_request_header"
+        android:layout_width="0dp"
+        android:layout_height="79dp"
+        android:gravity="center"
         android:text="@string/pending_requests_header"
-        android:textColor="#000"
+        android:textColor="#FFF"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintHeight_percent="0.10"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toRightOf="@id/imageView_dept_head_pending_request_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.6" />
 
-    <LinearLayout
-        android:id="@+id/pending_requests_col_heading"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pending_requests_header">
+        android:background="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.85"
+        app:layout_constraintHorizontal_bias="0.0"
 
-        <TextView
-            android:id="@+id/requests_id_column"
-            android:text="Request ID"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/requestor_column"
-            android:text="Requestor"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical" />
-
-        <TextView
-            android:id="@+id/date_column"
-            android:text="Submission Date"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical" />
-    </LinearLayout>
-
-
-    <ListView
-        android:id="@+id/dept_head_requests_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.80"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pending_requests_col_heading">
+        app:layout_constraintTop_toBottomOf="@id/tv_dept_head_pending_request_header"
+        app:layout_constraintVertical_bias="0.266"
+        app:layout_constraintWidth_percent="0.9">
 
-    </ListView>
+        <LinearLayout
+            android:id="@+id/pending_requests_col_heading"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryStore"
+            android:orientation="horizontal"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.9">
+
+            <TextView
+                android:id="@+id/requests_id_column"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Request ID"
+                android:textColor="#FFF" />
+
+            <TextView
+                android:id="@+id/requestor_column"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Requestor"
+                android:textColor="#FFF" />
+
+            <TextView
+                android:id="@+id/date_column"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Submission Date"
+                android:textColor="#FFF" />
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/dept_head_requests_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintHeight_percent="0.80"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pending_requests_col_heading">
+
+        </ListView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

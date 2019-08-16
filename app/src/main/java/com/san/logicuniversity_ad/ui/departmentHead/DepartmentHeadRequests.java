@@ -1,16 +1,20 @@
 package com.san.logicuniversity_ad.ui.departmentHead;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.BuildConfig;
 import com.san.logicuniversity_ad.Command;
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.adaptors.PendingRequestsAdapter;
-import com.san.logicuniversity_ad.modals.Employee;
 import com.san.logicuniversity_ad.modals.Request;
 import com.san.logicuniversity_ad.util.DateUtil;
 
@@ -23,53 +27,39 @@ import java.util.ArrayList;
 public class DepartmentHeadRequests extends AppCompatActivity implements AsyncToServer.IServerResponse {
 
     private ListView listView;
+    private int currentUserID;
+    private int currentRoleID;
+    private int currentDeptID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dept_head_pending_requests);
 
+        Bundle bundle = getIntent().getExtras();
+        currentUserID = bundle.getInt("currentUserID");
+        currentRoleID = bundle.getInt("currentRoleID");
+        currentDeptID = bundle.getInt("currentDeptID");
+
+        if (bundle.getString("confirmedStatus") != null){
+            String confirmedStatus = bundle.getString("confirmedStatus");
+            int confirmedRequestID = bundle.getInt("confirmedRequestID");
+            Toast.makeText(this,
+                    "Request ID: "+ confirmedRequestID + " has been " + confirmedStatus + ".", Toast.LENGTH_LONG)
+                    .show();
+        }
         listView = findViewById(R.id.dept_head_requests_list);
-
-//        requestlist = getList();
-//        PendingRequestsAdapter adapter = new PendingRequestsAdapter(this, requestlist);
-//        listView.setAdapter(adapter);
-
-
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         //async task to get all requests
-        Command cmd = new Command(this, "get",
-               "http://10.0.2.2:49283/home/getallrequests", null);
+        String endpt = BuildConfig.API_BASE_URL + "/api/getrequests/" + String.format("%d",currentDeptID);
+        Command cmd = new Command(this, "get", endpt, null);
         new AsyncToServer().execute(cmd);
     }
 
-    private ArrayList<Request> getList() {
-//        String emp1 = new Employee();
-//        emp1.setNAME("Bobbby");
-//        String emp2 = new Employee();
-//        emp2.setNAME("Jonie");
-//        Request r1 = new Request();
-//        r1.setID(4);
-//        r1.setSUBMITTED_BY(emp1);
-//        LocalDate dt1 = LocalDate.of(2019,8, 26);
-//        r1.setREQUEST_DATE(dt1);
-//        Request r2 = new Request();
-//        r2.setID(5);
-//        r2.setSUBMITTED_BY(emp2);
-//        LocalDate dt2 = LocalDate.of(2019,5, 20);
-//        r2.setREQUEST_DATE(dt2);
-
-        ArrayList<Request> requestlist = new ArrayList<>();
-//        requestlist.add(r1);
-//        requestlist.add(r2);
-        return requestlist;
-    }
 
     @Override
     public void onServerResponse(JSONObject jsonObj) {
@@ -79,8 +69,8 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
         try {
             JSONArray requestsArray = (JSONArray) jsonObj.get("result");
             ArrayList<Request> requestlist = new ArrayList<Request>();
-            LocalDate testdate = LocalDate.of(2019, 5,4);
-            for (int i = 0; i < requestsArray.length(); i++)
+            int len = requestsArray.length();
+            for (int i = 0; i < len; i++)
             {
                 JSONObject request = requestsArray.getJSONObject(i);
                 int requestID = request.getInt("ID");
@@ -95,8 +85,23 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
                 requestlist.add(requestObj);
             }
 
-            PendingRequestsAdapter adapter = new PendingRequestsAdapter(this,requestlist);
+            final PendingRequestsAdapter adapter = new PendingRequestsAdapter(this,requestlist);
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    int selectedRequestID = adapter.getItem(i).getID();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("selectedRequestID", selectedRequestID);
+                    bundle.putInt("currentUserID",currentUserID);
+                    bundle.putInt("currentRoleID", currentRoleID);
+                    bundle.putInt("currentDeptID", currentDeptID);
+                    Intent intent = new Intent(getApplicationContext(), DepartmentHeadRequestDecision.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
+
 
         }
         catch (Exception e) {
@@ -107,5 +112,17 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
     @Override
     public void onServerFailed() {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Bundle bundle = new Bundle();
+        bundle.putInt("currentUserID",currentUserID);
+        bundle.putInt("currentRoleID", currentRoleID);
+        bundle.putInt("currentDeptID", currentDeptID);
+        Intent intent = new Intent(this, DepartmentHeadMain.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

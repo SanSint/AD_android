@@ -1,11 +1,11 @@
 package com.san.logicuniversity_ad.modals;
 
 public class Employee {
-    public int ID;
-    public String NAME;
-    public int ROLE_ID;
-    public int DEPARTMENT_ID;
-    public String EMAIL;
+    private int ID;
+    private String NAME;
+    private int ROLE_ID;
+    private int DEPARTMENT_ID;
+    private String EMAIL;
 
     public Employee() {
     }
@@ -56,5 +56,10 @@ public class Employee {
 
     public void setEMAIL(String EMAIL) {
         this.EMAIL = EMAIL;
+    }
+
+    @Override
+    public String toString() {
+        return this.NAME;
     }
 }

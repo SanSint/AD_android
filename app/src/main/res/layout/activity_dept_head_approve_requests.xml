@@ -2,92 +2,117 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimaryStore"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView_dept_head_approve_request_header"
+        android:layout_width="89dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:transitionName="transition_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logic_logo" />
+
     <TextView
-        android:id="@+id/pending_requests_header"
+        android:id="@+id/tv_dept_head_approve_request_header"
+        android:layout_width="0dp"
+        android:layout_height="79dp"
+        android:gravity="center"
+        android:text="@string/pending_requests_details_header"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/imageView_dept_head_approve_request_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.6" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#e1bee7"
-        android:gravity="center_vertical"
-        android:padding="15sp"
-        android:text="@string/pending_requests_header"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintHeight_percent="0.10"
+        android:background="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.85"
+        app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_dept_head_approve_request_header"
+        app:layout_constraintVertical_bias="0.266"
+        app:layout_constraintWidth_percent="0.9">
 
-    <TextView
-        android:id="@+id/request_id_label"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:padding="10sp"
-        android:text="@string/request_id_label"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pending_requests_header" />
+        <TextView
+            android:id="@+id/request_id_label"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:padding="10sp"
+            android:text="@string/request_id_label"
+            android:textColor="@color/colorPrimaryDarkStore"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/request_id_pending"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:padding="10sp"
-        android:text="@string/loading"
-        android:textColor="#FFF"
-        android:textSize="16sp"
+        <TextView
+            android:id="@+id/request_id_pending"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
 
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintLeft_toRightOf="@id/request_id_label"
-        app:layout_constraintTop_toBottomOf="@id/pending_requests_header" />
+            android:padding="10sp"
+            android:text="@string/loading"
+            android:textColor="@color/colorPrimaryDarkStore"
+            android:textSize="16sp"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintLeft_toRightOf="@id/request_id_label"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/requestor_label"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="5dp"
-        android:gravity="center_vertical"
-        android:padding="10sp"
-        android:text="@string/requestor_label"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/request_id_label" />
+        <TextView
+            android:id="@+id/requestor_label"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
 
-    <TextView
-        android:id="@+id/requestor"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:gravity="center_vertical"
-        android:padding="10sp"
-        android:text="@string/loading"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        app:layout_constraintHeight_percent="0.08"
+            android:gravity="center_vertical"
+            android:padding="10sp"
+            android:text="@string/requestor_label"
+            android:textColor="@color/colorPrimaryDarkStore"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/request_id_label" />
 
-        app:layout_constraintLeft_toLeftOf="@id/request_id_pending"
-        app:layout_constraintTop_toBottomOf="@id/request_id_label" />
+        <TextView
+            android:id="@+id/requestor"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+
+            android:gravity="center_vertical"
+            android:padding="10sp"
+            android:text="@string/loading"
+            android:textColor="@color/colorPrimaryDarkStore"
+
+            android:textSize="16sp"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintLeft_toLeftOf="@id/request_id_pending"
+            app:layout_constraintTop_toBottomOf="@id/request_id_label" />
 
     <LinearLayout
         android:id="@+id/single_request_col_heading"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#fff1ff"
         android:layout_marginTop="10dp"
-
         android:orientation="horizontal"
-
+        android:background="@color/colorPrimaryStore"
         app:layout_constraintHeight_percent="0.07"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -100,21 +125,22 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Description"
-            android:textColor="#000" />
+            android:textColor="#FFF"
+            android:text="Description" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.01"
-            android:background="#000"/>
+            android:background="#000"
+            />
         <TextView
             android:id="@+id/requestor_column"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="Quantity"
-            android:textColor="#000" />
+            android:textColor="#FFF"
+            android:text="Quantity" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -126,8 +152,9 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="Price"
-            android:textColor="#000" />
+            android:textColor="#FFF"
+            android:text="Price" />
+
     </LinearLayout>
 
 
@@ -145,61 +172,72 @@
 
     </ListView>
 
-    <TextView
-        android:id="@+id/cost_label"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:padding="10sp"
-        android:text="@string/cost_label"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dept_head_request_details" />
-    <TextView
-        android:id="@+id/pending_requests_total_cost"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:padding="10sp"
-        android:text="@string/loading"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintLeft_toRightOf="@id/cost_label"
-        app:layout_constraintTop_toBottomOf="@id/dept_head_request_details" />
+        <TextView
+            android:id="@+id/cost_label"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
 
-    <Button
-        android:id="@+id/reject_pending_button"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/reject"
-        android:background="#ff7961"
-        android:textColor="#000"
-        app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintWidth_percent="0.4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/approve_pending_button"
-        app:layout_constraintTop_toBottomOf="@id/cost_label"/>
-    <Button
-        android:id="@+id/approve_pending_button"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/approve"
-        android:background="#c8e6c9"
-        android:textColor="#000"
-        app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintWidth_percent="0.4"
-        app:layout_constraintLeft_toRightOf="@id/reject_pending_button"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cost_label"/>
+            android:padding="10sp"
+            android:text="@string/cost_label"
+            android:textColor="@color/colorPrimaryDarkStore"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dept_head_request_details" />
+
+        <TextView
+            android:id="@+id/pending_requests_total_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+
+            android:padding="10sp"
+            android:text="@string/loading"
+            android:textColor="@color/colorPrimaryDarkStore"
+            android:textSize="16sp"
+            android:textStyle="bold"
+
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintLeft_toRightOf="@id/cost_label"
+            app:layout_constraintTop_toBottomOf="@id/dept_head_request_details" />
+
+        <Button
+            android:id="@+id/reject_pending_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:background="#72D32F2F"
+            android:text="@string/reject"
+            android:textColor="#FFFFFF"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/approve_pending_button"
+            app:layout_constraintTop_toBottomOf="@id/cost_label"
+            app:layout_constraintWidth_percent="0.2" />
+
+        <Button
+            android:id="@+id/approve_pending_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:background="#7953AC05"
+            android:text="@string/approve"
+
+            android:textColor="#000070"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintLeft_toRightOf="@id/reject_pending_button"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cost_label"
+            app:layout_constraintWidth_percent="0.3"
+            />
 
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

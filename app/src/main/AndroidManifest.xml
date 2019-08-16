@@ -5,12 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
+        android:windowSoftInputMode="adjustNothing"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
 
         <activity android:name=".LoginTemp">
@@ -18,13 +20,13 @@
 
 
         <!--<activity android:name=".DepartmentHeadMain" />-->
-        <activity android:name=".ui.departmentHead.DepartmentHeadMain" />
-        <activity android:name=".ui.departmentHead.DepartmentHeadRequests" />
-        <activity android:name=".ui.departmentHead.DepartmentHeadRequestDecision" />
-        <activity android:name=".ui.departmentHead.DepartmentHeadAppointRep" />
-        <activity android:name=".ui.departmentHead.DepartmentHeadDelegateHead" />
-        <activity android:name=".ui.departmentRep.DepartmentRepConfirmDisbursement" />
-        <activity android:name=".ui.departmentRep.DepartmentRepMain" />
+        <activity android:name=".ui.departmentHead.DepartmentHeadMain" android:theme="@style/DeptAppTheme.NoActionBar"/>
+        <activity android:name=".ui.departmentHead.DepartmentHeadRequests" android:theme="@style/DeptAppTheme.NoActionBar"/>
+        <activity android:name=".ui.departmentHead.DepartmentHeadRequestDecision" android:theme="@style/DeptTestAppTheme.NoActionBar"/>
+        <activity android:name=".ui.departmentHead.DepartmentHeadAppointRep" android:theme="@style/DeptAppTheme.NoActionBar"/>
+        <activity android:name=".ui.departmentHead.DepartmentHeadDelegateHead" android:theme="@style/DeptAppTheme.NoActionBar"/>
+        <activity android:name=".ui.departmentRep.DepartmentRepConfirmDisbursement" android:theme="@style/DeptAppTheme.NoActionBar"/>
+        <activity android:name=".ui.departmentRep.DepartmentRepMain" android:theme="@style/DeptAppTheme.NoActionBar"/>
 
         <!--Store Activities-->
 
