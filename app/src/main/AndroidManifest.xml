@@ -31,7 +31,7 @@
         <activity android:name=".ui.store.StoreClerkMainActivity" android:theme="@style/StoreAppTheme.NoActionBar">
         </activity>
 
-        <activity android:name=".LoginActivity" android:theme="@style/StoreAppTheme.NoActionBar" >
+        <activity android:name=".ui.LoginActivity" android:theme="@style/StoreAppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

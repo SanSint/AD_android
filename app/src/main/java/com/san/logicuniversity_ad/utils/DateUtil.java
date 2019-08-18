@@ -1,4 +1,4 @@
-package com.san.logicuniversity_ad.util;
+package com.san.logicuniversity_ad.utils;
 
 import java.time.Instant;
 import java.time.LocalDate;

@@ -12,11 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.utils.networkUtils.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
-import com.san.logicuniversity_ad.Command;
+import com.san.logicuniversity_ad.utils.networkUtils.Command;
 import com.san.logicuniversity_ad.R;
-import com.san.logicuniversity_ad.adaptors.DisbursementDetailsAdapter;
+import com.san.logicuniversity_ad.utils.adaptors.DisbursementDetailsAdapter;
 import com.san.logicuniversity_ad.modals.DisbursementItem;
 
 import org.json.JSONArray;

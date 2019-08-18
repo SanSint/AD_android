@@ -18,9 +18,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.utils.networkUtils.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
-import com.san.logicuniversity_ad.Command;
+import com.san.logicuniversity_ad.utils.networkUtils.Command;
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.DisbursementItem;
 import com.san.logicuniversity_ad.utils.adaptors.DisbursementItemAdaptor;

@@ -14,9 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.utils.networkUtils.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
-import com.san.logicuniversity_ad.Command;
+import com.san.logicuniversity_ad.utils.networkUtils.Command;
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.Employee;
 
@@ -35,19 +35,9 @@ public class DepartmentHeadAppointRep extends AppCompatActivity implements Async
     private int currentUserID;
     private int currentRoleID;
     private int currentDeptID;
+    private int actingHeadID;
     private Employee selectedEmployee;
-    private static final String[] employees = new String[] {
-            "Aaran", "Aaren", "Aarez", "Aarman", "Aaron", "Aaron-James",
-            "Aarron", "Aaryan", "Aaryn", "Aayan", "Aazaan", "Abaan",
-            "Bob", "Bobby", "Bobban", "Bal", "Boran",
-            "Abdisalam", "Abdul", "Abdul-Aziz", "Abdulbasir", "Abdulkadir",
-            "Mazin", "Mcbride", "McCaulley", "McKade", "McKauley",
-            "Employee105", "Employee106", "Employee107", "Employee108", "Employee109",
-            "Garren", "Garrett", "Garry", "Gary", "Gavin",
-            "Abubakar", "Ace", "Adain", "Adam", "Adam-James", "Addison", "Addisson",
-            "Quinn", "Radmiras", "Raees", "Raegan", "Rafae",
-            "Adrian", "Adrien", "Aedan", "Aedin", "Aedyn", "Aeron", "Afonso", "Ahmad", "Ahmed"
-    };
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +48,7 @@ public class DepartmentHeadAppointRep extends AppCompatActivity implements Async
         currentUserID = bundle.getInt("currentUserID");
         currentRoleID = bundle.getInt("currentRoleID");
         currentDeptID = bundle.getInt("currentDeptID");
+        actingHeadID = bundle.getInt("actingHeadID");
 
         acEmployee = findViewById(R.id.ac_employee_list);
         tvCurrentEmployee = findViewById(R.id.dept_rep);
@@ -130,6 +121,7 @@ public class DepartmentHeadAppointRep extends AppCompatActivity implements Async
                 bundle.putInt("currentUserID",currentUserID);
                 bundle.putInt("currentRoleID", currentRoleID);
                 bundle.putInt("currentDeptID", currentDeptID);
+                bundle.putInt("actingHeadID", actingHeadID);
                 bundle.putString("appointedRep",name);
                 Intent intent = new Intent(this, DepartmentHeadMain.class);
                 intent.putExtras(bundle);
@@ -156,6 +148,7 @@ public class DepartmentHeadAppointRep extends AppCompatActivity implements Async
         bundle.putInt("currentUserID",currentUserID);
         bundle.putInt("currentRoleID", currentRoleID);
         bundle.putInt("currentDeptID", currentDeptID);
+        bundle.putInt("actingHeadID", actingHeadID);
         Intent intent = new Intent(this, DepartmentHeadMain.class);
         intent.putExtras(bundle);
         startActivity(intent);

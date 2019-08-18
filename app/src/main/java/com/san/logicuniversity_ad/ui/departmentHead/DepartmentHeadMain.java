@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.san.logicuniversity_ad.LoginActivity;
+import com.san.logicuniversity_ad.ui.LoginActivity;
 import com.san.logicuniversity_ad.R;
 
 public class DepartmentHeadMain extends AppCompatActivity implements View.OnClickListener {
@@ -38,6 +38,7 @@ public class DepartmentHeadMain extends AppCompatActivity implements View.OnClic
         currentRoleID = bundle.getInt("currentRoleID");
         currentDeptID = bundle.getInt("currentDeptID");
         actingHeadID = bundle.getInt("actingHeadID");
+
         if (bundle.getString("appointedRep") != null){
             String name = bundle.getString("appointedRep");
             Toast.makeText(this,
@@ -85,6 +86,7 @@ public class DepartmentHeadMain extends AppCompatActivity implements View.OnClic
                 bundle.putInt("currentUserID",currentUserID);
                 bundle.putInt("currentRoleID", currentRoleID);
                 bundle.putInt("currentDeptID", currentDeptID);
+                bundle.putInt("actingHeadID", actingHeadID);
 
                 intent = new Intent(this, DepartmentHeadRequests.class);
                 intent.putExtras(bundle);
@@ -95,6 +97,7 @@ public class DepartmentHeadMain extends AppCompatActivity implements View.OnClic
                 bundle.putInt("currentUserID",currentUserID);
                 bundle.putInt("currentRoleID", currentRoleID);
                 bundle.putInt("currentDeptID", currentDeptID);
+                bundle.putInt("actingHeadID", actingHeadID);
 
                 intent = new Intent(this, DepartmentHeadAppointRep.class);
                 intent.putExtras(bundle);

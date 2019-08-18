@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.san.logicuniversity_ad.LoginActivity;
+import com.san.logicuniversity_ad.ui.LoginActivity;
 import com.san.logicuniversity_ad.R;
 
 public class DepartmentRepMain extends AppCompatActivity implements View.OnClickListener {

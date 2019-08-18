@@ -14,9 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.utils.networkUtils.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
-import com.san.logicuniversity_ad.Command;
+import com.san.logicuniversity_ad.utils.networkUtils.Command;
 import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.modals.Employee;
 
@@ -172,6 +172,7 @@ public class DepartmentHeadDelegateHead extends AppCompatActivity implements Asy
         bundle.putInt("currentUserID",currentUserID);
         bundle.putInt("currentRoleID", currentRoleID);
         bundle.putInt("currentDeptID", currentDeptID);
+        bundle.putInt("actingHeadID", actingHeadID);
         Intent intent = new Intent(this, DepartmentHeadMain.class);
         intent.putExtras(bundle);
         startActivity(intent);

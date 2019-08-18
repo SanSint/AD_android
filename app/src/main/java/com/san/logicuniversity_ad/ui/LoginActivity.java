@@ -1,16 +1,13 @@
-package com.san.logicuniversity_ad;
+package com.san.logicuniversity_ad.ui;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,6 +18,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.san.logicuniversity_ad.utils.networkUtils.AsyncToServer;
+import com.san.logicuniversity_ad.BuildConfig;
+import com.san.logicuniversity_ad.utils.networkUtils.Command;
+import com.san.logicuniversity_ad.R;
 import com.san.logicuniversity_ad.ui.departmentHead.DepartmentHeadMain;
 import com.san.logicuniversity_ad.ui.departmentRep.DepartmentRepMain;
 import com.san.logicuniversity_ad.ui.store.StoreClerkMainActivity;

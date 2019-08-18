@@ -11,11 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.utils.networkUtils.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
-import com.san.logicuniversity_ad.Command;
+import com.san.logicuniversity_ad.utils.networkUtils.Command;
 import com.san.logicuniversity_ad.R;
-import com.san.logicuniversity_ad.adaptors.PendingRequestDetailsAdapter;
+import com.san.logicuniversity_ad.utils.adaptors.PendingRequestDetailsAdapter;
 import com.san.logicuniversity_ad.modals.RequestDetails;
 
 import org.json.JSONArray;
@@ -33,6 +33,7 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
     private int currentUserID;
     private int currentRoleID;
     private int currentDeptID;
+    private int actingHeadID;
     private Button approveButton;
     private Button rejectButton;
     private String decision;
@@ -58,6 +59,7 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
         currentUserID = bundle.getInt("currentUserID");
         currentRoleID = bundle.getInt("currentRoleID");
         currentDeptID = bundle.getInt("currentDeptID");
+        actingHeadID = bundle.getInt("actingHeadID");
 
         tvRequestID.setText(String.format("%d", selectedRequestID));
 
@@ -124,6 +126,7 @@ public class DepartmentHeadRequestDecision extends AppCompatActivity implements 
                 bundle.putInt("currentUserID",currentUserID);
                 bundle.putInt("currentRoleID", currentRoleID);
                 bundle.putInt("currentDeptID", currentDeptID);
+                bundle.putInt("actingHeadID", actingHeadID);
                 bundle.putString("confirmedStatus", decision);
                 bundle.putInt("confirmedRequestID", selectedRequestID);
 

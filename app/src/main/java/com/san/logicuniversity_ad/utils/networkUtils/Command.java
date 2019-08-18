@@ -1,4 +1,4 @@
-package com.san.logicuniversity_ad;
+package com.san.logicuniversity_ad.utils.networkUtils;
 
 
 import org.json.JSONObject;

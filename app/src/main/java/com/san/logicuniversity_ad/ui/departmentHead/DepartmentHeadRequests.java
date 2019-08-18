@@ -10,13 +10,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.san.logicuniversity_ad.AsyncToServer;
+import com.san.logicuniversity_ad.utils.networkUtils.AsyncToServer;
 import com.san.logicuniversity_ad.BuildConfig;
-import com.san.logicuniversity_ad.Command;
+import com.san.logicuniversity_ad.utils.networkUtils.Command;
 import com.san.logicuniversity_ad.R;
-import com.san.logicuniversity_ad.adaptors.PendingRequestsAdapter;
+import com.san.logicuniversity_ad.utils.adaptors.PendingRequestsAdapter;
 import com.san.logicuniversity_ad.modals.Request;
-import com.san.logicuniversity_ad.util.DateUtil;
+import com.san.logicuniversity_ad.utils.DateUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,7 +30,7 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
     private int currentUserID;
     private int currentRoleID;
     private int currentDeptID;
-
+    private int actingHeadID;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
         currentUserID = bundle.getInt("currentUserID");
         currentRoleID = bundle.getInt("currentRoleID");
         currentDeptID = bundle.getInt("currentDeptID");
-
+        actingHeadID = bundle.getInt("actingHeadID");
         if (bundle.getString("confirmedStatus") != null){
             String confirmedStatus = bundle.getString("confirmedStatus");
             int confirmedRequestID = bundle.getInt("confirmedRequestID");
@@ -96,6 +96,8 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
                     bundle.putInt("currentUserID",currentUserID);
                     bundle.putInt("currentRoleID", currentRoleID);
                     bundle.putInt("currentDeptID", currentDeptID);
+                    bundle.putInt("actingHeadID", actingHeadID);
+
                     Intent intent = new Intent(getApplicationContext(), DepartmentHeadRequestDecision.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
@@ -121,6 +123,7 @@ public class DepartmentHeadRequests extends AppCompatActivity implements AsyncTo
         bundle.putInt("currentUserID",currentUserID);
         bundle.putInt("currentRoleID", currentRoleID);
         bundle.putInt("currentDeptID", currentDeptID);
+        bundle.putInt("actingHeadID", actingHeadID);
         Intent intent = new Intent(this, DepartmentHeadMain.class);
         intent.putExtras(bundle);
         startActivity(intent);
